@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shoppinapp/feture/ui/screen/home/home.dart';
+import 'package:shoppinapp/feture/ui/screen/login/login.dart';
+import 'package:shoppinapp/feture/ui/screen/register/register.dart';
 import 'package:shoppinapp/product/routes_pages.dart';
 
-import 'feture/ui/screen/home/home.dart';
 import 'feture/ui/screen/onboarding/onboarding.dart';
 
 void main() => runApp(const MyApp());
@@ -21,7 +23,11 @@ class MyApp extends StatelessWidget {
             ),
             debugShowCheckedModeBanner: false,
             initialRoute: RoutPages.onboarding.name,
-            routes: {RoutPages.home.name: (context) => HomePage()},
+            routes: {
+              RoutPages.login.name: (context) => LoginPage(),
+              RoutPages.home.name: (context) => const HomePage(),
+              RoutPages.register.name: (context) => const Register(),
+            },
             home: OnboradingPage()),
       ),
     );

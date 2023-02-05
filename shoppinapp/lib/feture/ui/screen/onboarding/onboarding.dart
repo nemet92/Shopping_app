@@ -36,6 +36,6 @@ class OnboradingPage extends StatelessWidget with OnboardingMixin {
           ),
         ],
         done: const Text("Next"),
-        onDone: () => context.navigateToReset(RoutPages.home.name));
+        onDone: () => context.navigateToReset(RoutPages.login.name));
   }
 }

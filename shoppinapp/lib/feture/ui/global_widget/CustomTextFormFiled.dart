@@ -6,11 +6,11 @@ class CustomTextFormFiled extends StatelessWidget {
       {super.key,
       required this.username,
       required this.hintText,
-      required this.prefixIcon});
+      this.prefixIcon});
 
   final TextEditingController username;
   String hintText;
-  Widget prefixIcon;
+  Widget? prefixIcon;
 
   @override
   Widget build(BuildContext context) {

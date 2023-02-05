@@ -23,7 +23,7 @@ mixin HomePageMixin {
   Text loginText() {
     return Text(
       "Login",
-      style: TextStyle(fontSize: 18.sp),
+      style: TextStyle(fontSize: 18.sp, color: Colors.white),
     );
   }
 
@@ -49,4 +49,10 @@ mixin HomePageMixin {
 
   String userHintText = "Mobile number and mail";
   String passwordHintText = "Password";
+}
+
+mixin RegisterMixin {
+  Text registerButtonText() {
+    return const Text("Get OTP");
+  }
 }
