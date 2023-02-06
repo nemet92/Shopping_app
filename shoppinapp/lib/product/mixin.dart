@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// Onboarding
 mixin OnboardingMixin {
   String pageviewOneText =
       " Grocery shopping can be done in, a variety of ways. Many grocery stores offer online ordering and delivery services, allowing customers to shop from the comfort of their own home.";
@@ -8,6 +9,7 @@ mixin OnboardingMixin {
       "Fast delivery is possible depending on the item and  the shipping method chosen. Many online retailers offer expedited shipping options such as overnight or two-day delivery for an additional fee.";
 }
 
+// HomePageMixin
 mixin HomePageMixin {
   RichText homeTextStyle() {
     return RichText(
@@ -23,11 +25,13 @@ mixin HomePageMixin {
   Text loginText() {
     return Text(
       "Login",
-      style: TextStyle(fontSize: 18.sp, color: Colors.white),
+      style: TextStyle(
+        fontSize: 16.sp,
+      ),
     );
   }
 
-  RichText createText() {
+  RichText signUpButtonText() {
     return RichText(
       text: TextSpan(
         children: [
@@ -51,8 +55,16 @@ mixin HomePageMixin {
   String passwordHintText = "Password";
 }
 
+//RegisterMixin
+
 mixin RegisterMixin {
   Text registerButtonText() {
-    return const Text("Get OTP");
+    return Text(
+      "Get OTP",
+      style: TextStyle(fontSize: 16.sp),
+    );
   }
+
+  String registerNameHint = "Name";
+  String addressHint = "Adress";
 }

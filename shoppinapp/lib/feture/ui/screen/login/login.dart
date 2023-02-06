@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
+import 'package:shoppinapp/core/service/mobx_view_model.dart';
+import 'package:shoppinapp/product/AppTextStyle/app_text_style.dart';
+import 'package:shoppinapp/product/AppText/app_string.dart';
 
 import '../../../../core/service/extension/project_extension.dart';
 import '../../../../product/mixin.dart';
@@ -11,84 +14,129 @@ import '../../global_widget/CustomTextFormFiled.dart';
 class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
   LoginPage({super.key});
 
-  TextEditingController usernameController = TextEditingController();
+  final loginViewMode = LoginViewMode();
+
+  TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController registerNameController = TextEditingController();
+  TextEditingController registerAdressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                  height: context.mediaQuery.size.height * 0.4,
-                  child: ImagePath.maskGroup2.toImage),
-              homeTextStyle(),
-              sizedBox(25.h),
-              CustomTextFormFiled(
-                  prefixIcon: const Icon(Icons.person),
-                  username: usernameController,
-                  hintText: userHintText),
-              sizedBox(10.h),
-              CustomTextFormFiled(
-                prefixIcon: const Icon(Icons.key),
-                username: passwordController,
-                hintText: passwordHintText,
+      body: _loginPage(context),
+    );
+  }
+
+  Padding _loginPage(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+                height: context.mediaQuery.size.height * 0.4,
+                child: ImagePath.maskGroup2.toImage),
+            Text(
+              AppString.getString(AppStrings.loginContent),
+              style: AppStyles.getStyle(AppTextStyles.loginContentStyle),
+            ),
+            sizedBox(25.h),
+            CustomTextFormFiled(
+                prefixIcon: const Icon(Icons.person),
+                username: loginController,
+                hintText: userHintText),
+            sizedBox(10.h),
+            CustomTextFormFiled(
+              prefixIcon: const Icon(Icons.key),
+              username: passwordController,
+              hintText: passwordHintText,
+              sufixIcon: IconButton(
+                icon: const Icon(Icons.visibility),
+                onPressed: () {},
               ),
-              sizedBox(35.h),
-              CustomElevatedButton(
-                text: loginText(),
-                color: Colors.red,
-                sideColor: Colors.transparent,
-                onPressed: () {
-                  context.navigateToReset(RoutPages.home.name);
-                },
+            ),
+            sizedBox(35.h),
+            CustomElevatedButton(
+              text: Text(
+                AppString.getString(AppStrings.loginButton),
+                style: AppStyles.getStyle(AppTextStyles.loginButton),
               ),
-              sizedBox(30.h),
-              CustomElevatedButton(
-                text: createText(),
-                color: Colors.white,
-                sideColor: Colors.black,
-                onPressed: () {
-                  _registerDialog(context);
-                },
-              )
-            ],
-          ),
+              color: Colors.red,
+              sideColor: Colors.transparent,
+              onPressed: () {
+                context.navigateToReset(RoutPages.home.name);
+              },
+            ),
+            sizedBox(25.h),
+            CustomElevatedButton(
+              text: RichText(
+                  text: TextSpan(
+                children: [
+                  TextSpan(
+                      text: AppString.getString(AppStrings.registerButton1),
+                      style: AppStyles.getStyle(AppTextStyles.registerButton1)),
+                  TextSpan(
+                      text: AppString.getString(AppStrings.registerButton2),
+                      style: AppStyles.getStyle(AppTextStyles.registerButton2))
+                ],
+              )),
+              color: Colors.white,
+              sideColor: Colors.black,
+              onPressed: () {
+                _registerDialog(context);
+              },
+            )
+          ],
         ),
       ),
     );
   }
 
+// RegisterAlertDialog
   Future<dynamic> _registerDialog(BuildContext context) {
     return showDialog(
         // barrierDismissible: false,
         context: context,
         builder: (_) {
           return AlertDialog(
+            scrollable: true,
             insetPadding: const EdgeInsets.symmetric(horizontal: 12),
             title: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [Text("Sign up "), Icon(Icons.cancel)],
+              children: [
+                Text(
+                  AppString.getString(AppStrings.alertTitle),
+                  style: AppStyles.getStyle(AppTextStyles.alertTitle),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.cancel),
+                  onPressed: () {
+                    context.navigation.canPop();
+                  },
+                ),
+              ],
             ),
-            content: const Text("data"),
+            content: Text(
+              AppString.getString(AppStrings.alertcontent),
+              style: AppStyles.getStyle(AppTextStyles.alertContent),
+            ),
             actions: [
               CustomTextFormFiled(
-                  username: usernameController, hintText: userHintText),
+                  username: loginController, hintText: userHintText),
               sizedBox(10.h),
               CustomTextFormFiled(
-                  username: usernameController, hintText: userHintText),
+                  username: registerNameController, hintText: registerNameHint),
               sizedBox(10.h),
               CustomTextFormFiled(
-                  username: usernameController, hintText: userHintText),
+                  username: registerAdressController, hintText: addressHint),
               sizedBox(10.h),
               CustomElevatedButton(
-                  text: registerButtonText(),
+                  text:
+                      Text(AppString.getString(AppStrings.registerButtonText)),
                   color: Colors.red,
                   sideColor: Colors.red,
                   onPressed: () {})
