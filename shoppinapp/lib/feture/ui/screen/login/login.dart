@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:shoppinapp/core/service/mobx_view_model.dart';
@@ -24,12 +25,7 @@ class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _loginPage(context),
-    );
-  }
-
-  Padding _loginPage(BuildContext context) {
-    return Padding(
+        body: Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 12,
       ),
@@ -49,15 +45,23 @@ class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
                 username: loginController,
                 hintText: userHintText),
             sizedBox(10.h),
-            CustomTextFormFiled(
-              prefixIcon: const Icon(Icons.key),
-              username: passwordController,
-              hintText: passwordHintText,
-              sufixIcon: IconButton(
-                icon: const Icon(Icons.visibility),
-                onPressed: () {},
-              ),
-            ),
+            Observer(builder: (_) {
+              return CustomTextFormFiled(
+                prefixIcon: const Icon(Icons.key),
+                username: passwordController,
+                hintText: passwordHintText,
+                obscureText: !loginViewMode.isVisible,
+                sufixIcon: IconButton(
+                  icon: Icon(loginViewMode.isVisible
+                      ? Icons.visibility_off
+                      : Icons.visibility),
+                  onPressed: () {
+                    print("jghgh");
+                    loginViewMode.changeVisibleValue();
+                  },
+                ),
+              );
+            }),
             sizedBox(35.h),
             CustomElevatedButton(
               text: Text(
@@ -92,8 +96,10 @@ class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
           ],
         ),
       ),
-    );
+    ));
   }
+
+  // Padding _loginPage(BuildContext context) {
 
 // RegisterAlertDialog
   Future<dynamic> _registerDialog(BuildContext context) {

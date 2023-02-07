@@ -1,9 +1,9 @@
 import 'package:mobx/mobx.dart';
 part 'mobx_view_model.g.dart';
 
-class LoginViewMode = __LoginViewModeBase with _$_LoginViewMode;
+class LoginViewMode = _LoginViewModeBase with _$LoginViewMode;
 
-abstract class __LoginViewModeBase with Store {
+abstract class _LoginViewModeBase with Store {
   @observable
   bool isVisible = false;
 

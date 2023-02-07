@@ -7,15 +7,18 @@ class CustomTextFormFiled extends StatelessWidget {
       required this.username,
       required this.hintText,
       this.sufixIcon,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.obscureText = false});
 
   final TextEditingController username;
   final String hintText;
   final Widget? prefixIcon;
   final Widget? sufixIcon;
+  final bool obscureText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscureText,
       controller: username,
       decoration: InputDecoration(
           prefixIcon: prefixIcon,
