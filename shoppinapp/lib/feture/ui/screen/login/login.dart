@@ -7,19 +7,38 @@ import 'package:shoppinapp/feture/ui/screen/home/home.dart';
 import 'package:shoppinapp/product/AppTextStyle/app_text_style.dart';
 import 'package:shoppinapp/product/AppText/app_string.dart';
 
-import '../../../../core/service/extension/project_extension.dart';
+import '../../../../core/extension/project_extension.dart';
+import '../../../../model/login_model.dart';
 import '../../global_widget/CustomElevatedButton.dart';
 import '../../global_widget/CustomTextFormFiled.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final loginViewMode = LoginViewMode();
 
+  // late final IService iService;
+
   TextEditingController loginController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
+
   TextEditingController registerNameController = TextEditingController();
+
   TextEditingController registerAdressController = TextEditingController();
+
+  // @override
+  // void initState() {
+  //   iService = GeneralService();
+  //   super.initState();
+  // }
+
+  final registerMode = LoginViewMode();
 
   @override
   Widget build(BuildContext context) {
@@ -68,11 +87,28 @@ class LoginPage extends StatelessWidget {
               ),
               color: Colors.red,
               sideColor: Colors.transparent,
-              onPressed: () {
+              onPressed: () async {
+                if (loginController.text.isNotEmpty &&
+                    passwordController.text.isNotEmpty) {
+                  final model = UserLoginModel(
+                      email: loginController.text,
+                      password: passwordController.text);
+
+                  await registerMode.postLogin(model);
+                  context.navigateToPage(const HomePage());
+
+                  // await iService.postLogin(model);
+                  //   if (registerMode.statusCode == 200) {
+                  //     context.navigateToPage(const HomePage());
+                  //   } else {
+                  // print("There is error ");
+                  // }
+                }
+
                 // context.navigateToReset(RoutPages.home.name);
-                context.navigateToPage(
-                  const HomePage(),
-                );
+                // context.navigateToPage(
+                //   const HomePage(),
+                // );
               },
             ),
             sizedBox(25.h),

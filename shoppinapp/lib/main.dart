@@ -10,6 +10,7 @@ import 'package:shoppinapp/product/routes_pages.dart';
 import 'feture/ui/screen/onboarding/onboarding.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             initialRoute: RoutPages.onboarding.name,
             routes: {
-              RoutPages.login.name: (context) => LoginPage(),
+              RoutPages.login.name: (context) => const LoginPage(),
               RoutPages.home.name: (context) => const HomePage(),
               RoutPages.register.name: (context) => const Register(),
             },

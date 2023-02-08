@@ -4,7 +4,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:kartal/kartal.dart';
 import 'package:shoppinapp/product/AppText/app_string.dart';
 
-import '../../../../core/service/extension/project_extension.dart';
+import '../../../../core/extension/project_extension.dart';
 import '../../../../product/routes_pages.dart';
 
 // ignore: must_be_immutable
