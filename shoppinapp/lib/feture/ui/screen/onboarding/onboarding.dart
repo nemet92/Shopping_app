@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 import 'package:kartal/kartal.dart';
+import 'package:shoppinapp/product/AppText/app_string.dart';
 
 import '../../../../core/service/extension/project_extension.dart';
-import '../../../../product/mixin.dart';
 import '../../../../product/routes_pages.dart';
 
 // ignore: must_be_immutable
-class OnboradingPage extends StatelessWidget with OnboardingMixin {
-  OnboradingPage({super.key});
+class OnboradingPage extends StatelessWidget {
+  const OnboradingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,12 @@ class OnboradingPage extends StatelessWidget with OnboardingMixin {
           PageViewModel(
             image: ImagePath.grocery.toImage,
             title: "Grocery Shopping",
-            body: pageviewOneText,
+            body: AppString.getString(AppStrings.onboardingText1),
           ),
           PageViewModel(
             image: ImagePath.delivery.toImage,
             title: "Delivery",
-            body: pageviewTwoText,
+            body: AppString.getString(AppStrings.onboardingText2),
           ),
         ],
         done: const Text("Next"),

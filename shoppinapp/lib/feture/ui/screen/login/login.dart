@@ -3,16 +3,15 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:shoppinapp/core/service/mobx_view_model.dart';
+import 'package:shoppinapp/feture/ui/screen/home/home.dart';
 import 'package:shoppinapp/product/AppTextStyle/app_text_style.dart';
 import 'package:shoppinapp/product/AppText/app_string.dart';
 
 import '../../../../core/service/extension/project_extension.dart';
-import '../../../../product/mixin.dart';
-import '../../../../product/routes_pages.dart';
 import '../../global_widget/CustomElevatedButton.dart';
 import '../../global_widget/CustomTextFormFiled.dart';
 
-class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
+class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   final loginViewMode = LoginViewMode();
@@ -43,20 +42,19 @@ class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
             CustomTextFormFiled(
                 prefixIcon: const Icon(Icons.person),
                 username: loginController,
-                hintText: userHintText),
+                hintText: AppString.getString(AppStrings.userHint)),
             sizedBox(10.h),
             Observer(builder: (_) {
               return CustomTextFormFiled(
                 prefixIcon: const Icon(Icons.key),
                 username: passwordController,
-                hintText: passwordHintText,
-                obscureText: !loginViewMode.isVisible,
+                hintText: AppString.getString(AppStrings.passwordHint),
+                obscureText: loginViewMode.isVisible,
                 sufixIcon: IconButton(
                   icon: Icon(loginViewMode.isVisible
                       ? Icons.visibility_off
                       : Icons.visibility),
                   onPressed: () {
-                    print("jghgh");
                     loginViewMode.changeVisibleValue();
                   },
                 ),
@@ -71,7 +69,10 @@ class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
               color: Colors.red,
               sideColor: Colors.transparent,
               onPressed: () {
-                context.navigateToReset(RoutPages.home.name);
+                // context.navigateToReset(RoutPages.home.name);
+                context.navigateToPage(
+                  const HomePage(),
+                );
               },
             ),
             sizedBox(25.h),
@@ -99,12 +100,10 @@ class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
     ));
   }
 
-  // Padding _loginPage(BuildContext context) {
-
 // RegisterAlertDialog
   Future<dynamic> _registerDialog(BuildContext context) {
     return showDialog(
-        // barrierDismissible: false,
+        barrierDismissible: false,
         context: context,
         builder: (_) {
           return AlertDialog(
@@ -121,7 +120,7 @@ class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
                 IconButton(
                   icon: const Icon(Icons.cancel),
                   onPressed: () {
-                    context.navigation.canPop();
+                    context.pop();
                   },
                 ),
               ],
@@ -132,13 +131,16 @@ class LoginPage extends StatelessWidget with HomePageMixin, RegisterMixin {
             ),
             actions: [
               CustomTextFormFiled(
-                  username: loginController, hintText: userHintText),
+                  username: loginController,
+                  hintText: AppString.getString(AppStrings.nameHint)),
               sizedBox(10.h),
               CustomTextFormFiled(
-                  username: registerNameController, hintText: registerNameHint),
+                  username: registerNameController,
+                  hintText: AppString.getString(AppStrings.passwordHint)),
               sizedBox(10.h),
               CustomTextFormFiled(
-                  username: registerAdressController, hintText: addressHint),
+                  username: registerAdressController,
+                  hintText: AppString.getString(AppStrings.adrressHint)),
               sizedBox(10.h),
               CustomElevatedButton(
                   text:

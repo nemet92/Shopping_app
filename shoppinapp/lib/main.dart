@@ -1,13 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shoppinapp/feture/ui/screen/home/home.dart';
 import 'package:shoppinapp/feture/ui/screen/login/login.dart';
 import 'package:shoppinapp/feture/ui/screen/register/register.dart';
+import 'package:shoppinapp/firebase_options.dart';
 import 'package:shoppinapp/product/routes_pages.dart';
 
 import 'feture/ui/screen/onboarding/onboarding.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -28,7 +35,7 @@ class MyApp extends StatelessWidget {
               RoutPages.home.name: (context) => const HomePage(),
               RoutPages.register.name: (context) => const Register(),
             },
-            home: OnboradingPage()),
+            home: const OnboradingPage()),
       ),
     );
   }
