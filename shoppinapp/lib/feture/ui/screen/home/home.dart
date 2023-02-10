@@ -41,10 +41,8 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               label: "Settings",
               icon: GestureDetector(
-                onTap: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingsPage())),
+                onTap: () => Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => SettingsPage())),
                 child: const Icon(
                   Icons.home,
                 ),
