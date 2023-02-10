@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shoppinapp/feture/ui/screen/home/home.dart';
-import 'package:shoppinapp/feture/ui/screen/login/login.dart';
+import 'package:shoppinapp/feture/ui/screen/login&register/login.dart';
 import 'package:shoppinapp/feture/ui/screen/register/register.dart';
 import 'package:shoppinapp/firebase_options.dart';
 import 'package:shoppinapp/product/routes_pages.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: const Color(0xffFFFFFF),
             ),
             debugShowCheckedModeBanner: false,
-            initialRoute: RoutPages.onboarding.name,
+            initialRoute: RoutPages.home.name,
             routes: {
               RoutPages.login.name: (context) => const LoginPage(),
               RoutPages.home.name: (context) => const HomePage(),

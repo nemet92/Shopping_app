@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:shoppinapp/model/login_model.dart';
+import 'package:shoppinapp/core/service/model/login_model.dart';
 import 'package:dio/dio.dart';
 
 import 'key_string.dart';

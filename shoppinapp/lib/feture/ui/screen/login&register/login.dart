@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
-import 'package:shoppinapp/core/service/mobx_view_model.dart';
+import 'package:shoppinapp/core/mobx/mobx_view_model.dart';
 import 'package:shoppinapp/feture/ui/screen/home/home.dart';
 import 'package:shoppinapp/product/AppTextStyle/app_text_style.dart';
 import 'package:shoppinapp/product/AppText/app_string.dart';
 
 import '../../../../core/extension/project_extension.dart';
-import '../../../../model/login_model.dart';
+import '../../../../core/service/model/login_model.dart';
 import '../../global_widget/CustomElevatedButton.dart';
 import '../../global_widget/CustomTextFormFiled.dart';
 
@@ -31,6 +31,13 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController registerNameController = TextEditingController();
 
   TextEditingController registerAdressController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TextEditingController = loginController;
+
+    super.dispose();
+  }
 
   // @override
   // void initState() {
@@ -94,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                       email: loginController.text,
                       password: passwordController.text);
 
-                  await registerMode.postLogin(model);
+                  // await registerMode.postLogin(model);
                   context.navigateToPage(const HomePage());
 
                   // await iService.postLogin(model);

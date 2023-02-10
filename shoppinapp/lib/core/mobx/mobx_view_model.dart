@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
 import 'package:shoppinapp/core/service/general_service.dart';
-import 'package:shoppinapp/model/login_model.dart';
 part 'mobx_view_model.g.dart';
 
 class LoginViewMode = _LoginViewModeBase with _$LoginViewMode;
@@ -11,13 +10,13 @@ abstract class _LoginViewModeBase with Store {
     iService = GeneralService();
   }
 
-  @observable
-  List<UserLoginModel>? items;
-  @action
-  Future<List<UserLoginModel>?> postLogin(model) async {
-    items = await iService.postLogin(model);
-    return items;
-  }
+  // @observable
+  // List<UserLoginModel>? items;
+  // @action
+  // Future <void> postLogin(UserLoginModel model) async {
+  //   items = await iService.postLogin(model);
+  //   return items;
+  // }
 
   @observable
   bool isVisible = false;
