@@ -8,7 +8,7 @@ enum AppTextStyles {
   registerButton2,
   alertTitle,
   alertContent,
-  registerButtonStyle
+  registerButtonStyle,
 }
 
 class AppStyles {

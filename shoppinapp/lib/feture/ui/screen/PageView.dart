@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 // import 'package:flutter/material.dart';
 // import 'package:shoppinapp/feture/ui/screen/cart/cart.dart';
 // import 'package:shoppinapp/feture/ui/screen/search/search.dart';

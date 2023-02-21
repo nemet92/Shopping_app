@@ -1,22 +1,22 @@
+// ignore: depend_on_referenced_packages
 import 'package:mobx/mobx.dart';
 import 'package:shoppinapp/core/service/general_service.dart';
+import 'package:shoppinapp/core/service/model/login_model.dart';
 part 'mobx_view_model.g.dart';
 
-class LoginViewMode = _LoginViewModeBase with _$LoginViewMode;
+// ignore: library_private_types_in_public_api
+class MobxStateManagement = _MobxStateManagementBase with _$MobxStateManagement;
 
-abstract class _LoginViewModeBase with Store {
-  late IService iService;
-  _LoginViewModeBase() {
-    iService = GeneralService();
+abstract class _MobxStateManagementBase with Store {
+  IService iService = GeneralService();
+
+  @observable
+  bool isLoading = false;
+
+  @action
+  void changeLoading() {
+    isLoading = !isLoading;
   }
-
-  // @observable
-  // List<UserLoginModel>? items;
-  // @action
-  // Future <void> postLogin(UserLoginModel model) async {
-  //   items = await iService.postLogin(model);
-  //   return items;
-  // }
 
   @observable
   bool isVisible = false;
@@ -25,36 +25,19 @@ abstract class _LoginViewModeBase with Store {
   changeVisibleValue() {
     isVisible = !isVisible;
   }
+
+  @observable
+  int currentIndex = 0;
+
+  @action
+  void changeIndex(int index) {
+    currentIndex = index;
+  }
+
+  @action
+  Future<void> signUpEmailAndPassword(UserLoginModel model) async {
+    changeLoading();
+    await iService.signUp(model);
+    changeLoading();
+  }
 }
-
-// import 'package:mobx/mobx.dart';
-// import 'package:shoppinapp/core/service/General_service.dart';
-// import 'package:shoppinapp/model/login_model.dart';
-// part 'mobx_view_model.g.dart';
-
-// class LoginViewModel = _LoginViewModelBase with _$LoginViewModel;
-
-// abstract class _LoginViewModelBase with Store {
-//   late IService iService;
-//   _LoginViewModelBase() {
-//     iService = GeneralService();
-//   }
-
-//   @observable
-//   int? statusCode;
-
-//   @action
-//   Future postLogin(UserLoginModel model) async {
-//     final response = await iService.postLogin(model);
-//     statusCode = response.statusCode;
-//     print("ne$statusCode");
-//   }
-
-//   @observable
-//   bool isVisible = false;
-
-//   @action
-//   changeVisibleValue() {
-//     isVisible = !isVisible;
-//   }
-// }

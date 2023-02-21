@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shoppinapp/feture/ui/screen/settings/settings.dart';
+import 'package:shoppinapp/core/mobx/mobx_view_model.dart';
+
+import '../../global_widget/custom_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,9 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
-  final PageController _pageController = PageController();
+  MobxStateManagement mobxStateManagement = MobxStateManagement();
 
   @override
   Widget build(BuildContext context) {
@@ -20,42 +20,72 @@ class _HomePageState extends State<HomePage> {
         color: Colors.purple,
         child: const Text("home Page"),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.red,
-          currentIndex: _selectedIndex,
-          onTap: _onTappedBar,
-          selectedItemColor: Colors.black,
-          items: [
-            const BottomNavigationBarItem(
-              label: "Home",
-              icon: Icon(Icons.home),
-            ),
-            const BottomNavigationBarItem(
-              label: "Search",
-              icon: Icon(Icons.home),
-            ),
-            const BottomNavigationBarItem(
-              label: "Cart",
-              icon: Icon(Icons.home),
-            ),
-            BottomNavigationBarItem(
-              label: "Settings",
-              icon: GestureDetector(
-                onTap: () => Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => SettingsPage())),
-                child: const Icon(
-                  Icons.home,
-                ),
-              ),
-            )
-          ]),
+      bottomNavigationBar: const CustomNavigationBar2(),
     );
   }
-
-  void _onTappedBar(int value) {
-    setState(() {
-      _selectedIndex = value;
-    });
-    _pageController.jumpToPage(value);
-  }
 }
+
+
+// class CustomBottomNavigationBar extends StatelessWidget {
+//   const CustomBottomNavigationBar({
+//     super.key,
+//     required this.mobxStateManagement,
+//   });
+
+//   final MobxStateManagement mobxStateManagement;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Observer(builder: (_) {
+//       return BottomNavigationBar(
+//           type: BottomNavigationBarType.fixed,
+//           backgroundColor: Colors.red,
+//           currentIndex: mobxStateManagement.currentIndex,
+//           // _selectedIndex,
+//           onTap: (index) {
+//             if (index == 1) {
+//               context.navigateToPage(SearchPage());
+//               // mobxStateManagement.changeIndex(index);
+//             } else if (index == 0) {
+//               context.navigateToPage(const HomePage());
+//               // mobxStateManagement.changeIndex(index);
+//             }
+//           }
+//           // (value) {
+//           //   if (value == 0) {
+//           //     Navigator.pushReplacement(
+//           //         context, MaterialPageRoute(builder: (_) => const HomePage()));
+//           //     _changeSelectedBar(value);
+//           //   } else {
+//           //     if (value == 1) {
+//           //       Navigator.pushReplacement(context,
+//           //           MaterialPageRoute(builder: (_) => const SearchPage()));
+// //  ;})         //       _changeSelectedBar(value);
+//           //     }
+//           //   }
+//           // },
+//           ,
+//           selectedItemColor: Colors.black,
+//           items: const [
+//             BottomNavigationBarItem(
+//               label: "Home",
+//               icon: Icon(Icons.home),
+//             ),
+//             BottomNavigationBarItem(
+//               label: "Search",
+//               icon: Icon(Icons.search),
+//             ),
+//             BottomNavigationBarItem(
+//               label: "Cart",
+//               icon: Icon(Icons.card_travel),
+//             ),
+//             BottomNavigationBarItem(
+//               label: "Settings",
+//               icon: Icon(
+//                 Icons.home,
+//               ),
+//             )
+//           ]);
+//     });
+//   }
+// }

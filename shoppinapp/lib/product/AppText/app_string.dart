@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 enum AppStrings {
   onboardingText1,
   onboardingText2,
@@ -15,6 +17,17 @@ enum AppStrings {
   passwordHint,
   nameHint,
   adrressHint,
+
+  setting,
+  profile,
+  orders,
+  paymentMethods,
+  notifications,
+  manageRefund,
+  referrals,
+  changeLanguage,
+  helpSupport,
+  language
 }
 
 class AppString {
@@ -53,13 +66,44 @@ class AppString {
       // hint text
 
       case AppStrings.passwordHint:
-        return "Password";
+        return "Password".tr();
 
       case AppStrings.nameHint:
         return "Name";
 
       case AppStrings.adrressHint:
         return "Addrres";
+
+      // Setting page
+      case AppStrings.setting:
+        return "Setting";
+
+      case AppStrings.profile:
+        return "profile".tr();
+
+      case AppStrings.orders:
+        return "orders".tr();
+
+      case AppStrings.paymentMethods:
+        return "paymentMethods".tr();
+
+      case AppStrings.notifications:
+        return "Notifications";
+
+      case AppStrings.manageRefund:
+        return "Manage Refund";
+
+      case AppStrings.referrals:
+        return "Refferals";
+
+      case AppStrings.changeLanguage:
+        return "Change Language";
+
+      case AppStrings.helpSupport:
+        return "Help & Support";
+
+      case AppStrings.language:
+        return "Azerbaijan".tr();
     }
   }
 }

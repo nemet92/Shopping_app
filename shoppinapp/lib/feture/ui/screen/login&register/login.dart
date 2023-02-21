@@ -20,11 +20,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final loginViewMode = LoginViewMode();
+  MobxStateManagement mobxStateManagement = MobxStateManagement();
 
-  // late final IService iService;
-
-  TextEditingController loginController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
 
@@ -38,14 +36,6 @@ class _LoginPageState extends State<LoginPage> {
 
     super.dispose();
   }
-
-  // @override
-  // void initState() {
-  //   iService = GeneralService();
-  //   super.initState();
-  // }
-
-  final registerMode = LoginViewMode();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
             sizedBox(25.h),
             CustomTextFormFiled(
                 prefixIcon: const Icon(Icons.person),
-                username: loginController,
+                username: emailController,
                 hintText: AppString.getString(AppStrings.userHint)),
             sizedBox(10.h),
             Observer(builder: (_) {
@@ -75,13 +65,13 @@ class _LoginPageState extends State<LoginPage> {
                 prefixIcon: const Icon(Icons.key),
                 username: passwordController,
                 hintText: AppString.getString(AppStrings.passwordHint),
-                obscureText: loginViewMode.isVisible,
+                obscureText: mobxStateManagement.isVisible,
                 sufixIcon: IconButton(
-                  icon: Icon(loginViewMode.isVisible
+                  icon: Icon(mobxStateManagement.isVisible
                       ? Icons.visibility_off
                       : Icons.visibility),
                   onPressed: () {
-                    loginViewMode.changeVisibleValue();
+                    mobxStateManagement.changeVisibleValue();
                   },
                 ),
               );
@@ -95,27 +85,14 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.red,
               sideColor: Colors.transparent,
               onPressed: () async {
-                if (loginController.text.isNotEmpty &&
+                if (emailController.text.isNotEmpty &&
                     passwordController.text.isNotEmpty) {
                   final model = UserLoginModel(
-                      email: loginController.text,
+                      email: emailController.text,
                       password: passwordController.text);
-
-                  // await registerMode.postLogin(model);
-                  context.navigateToPage(const HomePage());
-
-                  // await iService.postLogin(model);
-                  //   if (registerMode.statusCode == 200) {
-                  //     context.navigateToPage(const HomePage());
-                  //   } else {
-                  // print("There is error ");
-                  // }
+                  mobxStateManagement.signUpEmailAndPassword(model);
+                  await context.navigateToPage(const HomePage());
                 }
-
-                // context.navigateToReset(RoutPages.home.name);
-                // context.navigateToPage(
-                //   const HomePage(),
-                // );
               },
             ),
             sizedBox(25.h),
@@ -174,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             actions: [
               CustomTextFormFiled(
-                  username: loginController,
+                  username: emailController,
                   hintText: AppString.getString(AppStrings.nameHint)),
               sizedBox(10.h),
               CustomTextFormFiled(

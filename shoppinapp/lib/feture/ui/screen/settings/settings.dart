@@ -1,91 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:shoppinapp/feture/ui/global_widget/pop_menu.dart';
+import 'package:shoppinapp/product/AppText/app_string.dart';
 
-class SettingsPage extends StatelessWidget {
-  SettingsPage({
+import '../../global_widget/custom_cart.dart';
+import '../../global_widget/custom_navigation_bar.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
+
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({
     super.key,
   });
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
   late Function() onPressed;
+
   Icon? trailingIcon;
+
   Icon? leadingIcon;
+
   Text? title;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: const CustomNavigationBar2(),
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: const Text(
-            "Setting",
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
+            automaticallyImplyLeading: false,
+            elevation: 0,
+            title: Text(
+              AppString.getString(
+                AppStrings.setting,
+              ),
+            )),
         body: ListView(
+          padding: const EdgeInsets.all(8),
           children: [
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.person),
-                title: const Text("Profil")),
+                title: Text(AppString.getString(AppStrings.profile))),
             CustomCard(
                 onPressed: () {},
-                leadingIcon: const Icon(Icons.person),
-                title: const Text("Orders")),
+                leadingIcon: const Icon(FontAwesome.shopping_basket),
+                title: Text(AppString.getString(AppStrings.orders))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.payment),
-                title: const Text("Profil")),
+                title: Text(AppString.getString(AppStrings.paymentMethods))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.notifications),
-                title: const Text("Notifications")),
+                title: Text(AppString.getString(AppStrings.notifications))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.manage_accounts),
-                title: const Text("Profil")),
+                title: Text(AppString.getString(AppStrings.manageRefund))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.read_more),
-                title: const Text("Profil")),
+                title: Text(AppString.getString(AppStrings.referrals))),
             CustomCard(
+                trailing: PopMenuBar(
+                  items: [
+                    PopUpMenuBarItem(AppString.getString(AppStrings.language),
+                        const Icon(Icons.flag)),
+                    PopUpMenuBarItem(AppString.getString(AppStrings.language),
+                        const Icon(Icons.flag))
+                  ],
+                  baseIscon: Icons.chevron_right,
+                  iconColor: Colors.black,
+                ),
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.language),
-                title: const Text("Change Language")),
+                title: Text(AppString.getString(AppStrings.changeLanguage))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.help_outline),
-                title: const Text("Help & Support")),
+                title: Text(AppString.getString(AppStrings.helpSupport))),
           ],
         ));
   }
 }
-
-class CustomCard extends StatelessWidget {
-  const CustomCard({
-    super.key,
-    required this.onPressed,
-    required this.leadingIcon,
-    required this.title,
-  });
-
-  final Function() onPressed;
-  final Icon? leadingIcon;
-  final Text? title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        iconColor: Colors.red,
-        onTap: onPressed,
-        minLeadingWidth: 1,
-        trailing: const Icon(
-          Icons.arrow_circle_right,
-          color: Colors.black54,
-        ),
-        leading: leadingIcon,
-        title: title,
-      ),
-    );
-  }
-}
-
-Function? onPressed;
