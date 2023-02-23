@@ -9,6 +9,22 @@ part of 'mobx_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MobxStateManagement on _MobxStateManagementBase, Store {
+  late final _$serviceCodeAtom =
+      Atom(name: '_MobxStateManagementBase.serviceCode', context: context);
+
+  @override
+  int? get serviceCode {
+    _$serviceCodeAtom.reportRead();
+    return super.serviceCode;
+  }
+
+  @override
+  set serviceCode(int? value) {
+    _$serviceCodeAtom.reportWrite(value, super.serviceCode, () {
+      super.serviceCode = value;
+    });
+  }
+
   late final _$isLoadingAtom =
       Atom(name: '_MobxStateManagementBase.isLoading', context: context);
 
@@ -67,6 +83,16 @@ mixin _$MobxStateManagement on _MobxStateManagementBase, Store {
         .run(() => super.signUpEmailAndPassword(model));
   }
 
+  late final _$signInEmailAndPasswordAsyncAction = AsyncAction(
+      '_MobxStateManagementBase.signInEmailAndPassword',
+      context: context);
+
+  @override
+  Future<void> signInEmailAndPassword(UserLoginModel model) {
+    return _$signInEmailAndPasswordAsyncAction
+        .run(() => super.signInEmailAndPassword(model));
+  }
+
   late final _$_MobxStateManagementBaseActionController =
       ActionController(name: '_MobxStateManagementBase', context: context);
 
@@ -106,6 +132,7 @@ mixin _$MobxStateManagement on _MobxStateManagementBase, Store {
   @override
   String toString() {
     return '''
+serviceCode: ${serviceCode},
 isLoading: ${isLoading},
 isVisible: ${isVisible},
 currentIndex: ${currentIndex}

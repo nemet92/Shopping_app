@@ -27,7 +27,6 @@ enum AppStrings {
   referrals,
   changeLanguage,
   helpSupport,
-  language
 }
 
 class AppString {
@@ -79,7 +78,7 @@ class AppString {
         return "Setting";
 
       case AppStrings.profile:
-        return "profile".tr();
+        return "profil".tr();
 
       case AppStrings.orders:
         return "orders".tr();
@@ -88,7 +87,7 @@ class AppString {
         return "paymentMethods".tr();
 
       case AppStrings.notifications:
-        return "Notifications";
+        return "notifications".tr();
 
       case AppStrings.manageRefund:
         return "Manage Refund";
@@ -101,9 +100,6 @@ class AppString {
 
       case AppStrings.helpSupport:
         return "Help & Support";
-
-      case AppStrings.language:
-        return "Azerbaijan".tr();
     }
   }
 }

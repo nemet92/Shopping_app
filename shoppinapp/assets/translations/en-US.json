@@ -3,8 +3,14 @@
 "profil":"Profil",
 "orders":"Orders",
 "paymentMethods":"Payment Methods",
-"Notifications":"Notifications",
-"Azerbaijan":"Azerbaijan"
+"notifications":"Notifications",
+"lang.tr": "Turksh",
+"lang.en": "English",
+
+"bottomSheetText":"Choose Profile photo",
+"errorText":"No format "
+
+
 
 
 }

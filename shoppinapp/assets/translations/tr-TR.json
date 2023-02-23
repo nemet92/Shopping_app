@@ -3,9 +3,13 @@
     "profil":"Hesabim",
     "orders":"Sifarisler",
     "paymentMethods":"Odenis yontemi",
-    "Notifications":"Notifications",
+    "notifications":"Bildirisler",
     "Azerbaijan":"Azerbaycan",
-    "lang.az": "Azərbaycan dili",
-    "lang.en": "English"
+    "lang.tr": "Turk dili",
+    "lang.en": "Ingilis dili",
+
+    "bottomSheetText":"Profil resimini secin",
+    "errorText":"Format duzgun deyil"
+
     
     }

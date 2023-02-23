@@ -13,11 +13,13 @@ class PopMenuBar extends StatelessWidget {
       {super.key,
       required this.baseIscon,
       required this.iconColor,
-      required this.items});
+      required this.items,
+      required this.onSelected});
 
   final List<PopUpMenuBarItem> items;
   final IconData baseIscon;
   final Color iconColor;
+  final Function onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class PopMenuBar extends StatelessWidget {
           baseIscon,
           color: iconColor,
         ),
+        onSelected: onSelected(),
         itemBuilder: (context) => [
               for (var i = 0; i < items.length; i++)
                 PopupMenuItem(

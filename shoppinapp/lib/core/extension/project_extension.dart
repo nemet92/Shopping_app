@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-enum ImagePath { delivery, grocery, maskGroup2 }
+enum ImagePath {
+  delivery,
+  grocery,
+  maskGroup2,
+  turkey,
+  azerbaijan,
+  unitedState
+}
 
 // enum ImagePathSvg { maskGroup }
 
