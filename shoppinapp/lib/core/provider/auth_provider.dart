@@ -7,6 +7,11 @@ class AuthProvider extends ChangeNotifier {
   // bool _isSignedIn = false;
   // bool get isSignedIn => _isSignedIn;
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  String? _uid;
+  String? get uid => _uid;
+
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   // AuthProvider() {
@@ -31,10 +36,37 @@ class AuthProvider extends ChangeNotifier {
             throw Exception(error.message);
           },
           codeSent: ((verificationId, forceResendingToken) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const OtpScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => OtpScreen(
+                          verificationId: verificationId,
+                        )));
           }),
           codeAutoRetrievalTimeout: ((verificationId) {}));
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message.toString());
+    }
+  }
+
+  void verifyOtp(
+      {required BuildContext context,
+      required String verificationId,
+      required String userOtp,
+      required Function onSuccess}) async {
+    _isLoading = true;
+    notifyListeners();
+    try {
+      PhoneAuthCredential creds = PhoneAuthProvider.credential(
+          verificationId: verificationId, smsCode: userOtp);
+      User user = (await _firebaseAuth.signInWithCredential(creds)).user!;
+      // ignore: unnecessary_null_comparison
+      if (user != null) {
+        _uid = user.uid;
+        onSuccess();
+      }
+      _isLoading = false;
+      notifyListeners();
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message.toString());
     }

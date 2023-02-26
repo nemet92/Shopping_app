@@ -35,7 +35,6 @@ class GeneralService implements IService {
     Dio dio = Dio();
     final response = await dio.post(signUpKey, data: model);
     if (response.statusCode == 200) {
-      print(statusCode);
       statusCode = response.statusCode;
 
       FirebaseAuth.instance.createUserWithEmailAndPassword(

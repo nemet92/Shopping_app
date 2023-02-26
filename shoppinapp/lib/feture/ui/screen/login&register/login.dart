@@ -206,7 +206,6 @@ class _LoginPageState extends State<LoginPage> {
                     //   if (_validateUserName == false &&
                     //       _validateUserPassword == false) {}
                     // });
-                    print(registerNameController.text);
 
                     if (registerNameController.text.isNotEmpty &&
                         registerPassNameController.text.isNotEmpty) {
