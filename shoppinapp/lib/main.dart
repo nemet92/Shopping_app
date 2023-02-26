@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shoppinapp/feture/ui/global_widget/globalNavigationBar.dart';
 import 'package:shoppinapp/feture/ui/screen/login&register/login.dart';
-import 'package:shoppinapp/feture/ui/screen/register/register.dart';
 import 'package:shoppinapp/firebase_options.dart';
 import 'package:shoppinapp/product/routes_pages.dart';
-
+import 'core/provider/auth_provider.dart';
 import 'feture/ui/screen/onboarding/onboarding.dart';
 
 void main() async {
@@ -31,27 +31,32 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       splitScreenMode: true,
       designSize: const Size(360, 690),
-      builder: (context, child) => MaterialApp(
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.deviceLocale,
-          theme: ThemeData(
-              scaffoldBackgroundColor: const Color(0xffFFFFFF),
-              appBarTheme: const AppBarTheme(
-                  backgroundColor: Colors.transparent,
-                  centerTitle: false,
-                  titleTextStyle: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20))),
-          debugShowCheckedModeBanner: false,
-          initialRoute: RoutPages.login.name,
-          routes: {
-            RoutPages.login.name: (context) => const LoginPage(),
-            RoutPages.home.name: (context) => const GlobalNavigationBar(),
-            RoutPages.register.name: (context) => const Register(),
-          },
-          home: const OnboradingPage()),
+      builder: (context, child) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ],
+        child: MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.deviceLocale,
+            theme: ThemeData(
+                scaffoldBackgroundColor: const Color(0xffFFFFFF),
+                appBarTheme: const AppBarTheme(
+                    backgroundColor: Colors.transparent,
+                    centerTitle: false,
+                    titleTextStyle: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20))),
+            debugShowCheckedModeBanner: false,
+            initialRoute: RoutPages.login.name,
+            routes: {
+              RoutPages.login.name: (context) => const LoginPage(),
+              RoutPages.home.name: (context) => const GlobalNavigationBar(),
+              // RoutPages.register.name: (context) => const Register(),
+            },
+            home: const OnboradingPage()),
+      ),
     );
   }
 }

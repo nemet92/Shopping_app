@@ -41,7 +41,6 @@ abstract class _MobxStateManagementBase with Store {
   Future<void> signUpEmailAndPassword(UserLoginModel model) async {
     changeLoading();
     await iService.signUp(model);
-    serviceCode = iService.statusCode;
     changeLoading();
   }
 
@@ -49,6 +48,7 @@ abstract class _MobxStateManagementBase with Store {
   Future<void> signInEmailAndPassword(UserLoginModel model) async {
     changeLoading();
     await iService.signIn(model);
+    serviceCode = iService.statusCode;
     changeLoading();
   }
 }

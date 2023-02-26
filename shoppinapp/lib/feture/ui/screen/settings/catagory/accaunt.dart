@@ -13,14 +13,16 @@ class Accaunt extends StatefulWidget {
 }
 
 class _AccauntState extends State<Accaunt> {
-  final ImagePicker _picker = ImagePicker();
-  XFile? imageFile;
+  File? imageFile;
 
   void takePhoto(ImageSource source) async {
-    final picedFile = await _picker.pickImage(source: source);
-    setState(() {
-      imageFile = picedFile;
-    });
+    final ImagePicker picker = ImagePicker();
+    final XFile? picedFile = await picker.pickImage(source: source);
+    if (picedFile != null) {
+      setState(() {
+        imageFile = File(picedFile.path);
+      });
+    }
   }
 
   @override
@@ -95,18 +97,23 @@ class _AccauntState extends State<Accaunt> {
     return Center(
       child: Stack(
         children: [
-          CircleAvatar(
-            backgroundImage: imageFile == null
-                ? const AssetImage(
-                    "assets/Image_not_available.png",
-                  )
-                : FileImage(
-                    File(
-                      imageFile?.path ?? " ",
+          imageFile == null
+              ? CircleAvatar(
+                  radius: MediaQuery.of(context).size.width * 0.20,
+                  child: SizedBox(
+                    child: ClipOval(
+                      child: Image.asset(
+                        "assets/Image_not_available.png",
+                      ),
                     ),
-                  ) as ImageProvider,
-            radius: 80.r,
-          ),
+                  ),
+                )
+              : CircleAvatar(
+                  radius: MediaQuery.of(context).size.width * 0.20,
+                  backgroundImage: FileImage(
+                      scale: 0.4,
+                      imageFile ?? File("assets/Image_not_available.png")),
+                ),
           Positioned(
             bottom: 20,
             right: 20,

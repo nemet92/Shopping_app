@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:shoppinapp/core/mobx/mobx_view_model.dart';
@@ -8,8 +10,9 @@ import 'package:shoppinapp/product/AppText/app_string.dart';
 
 import '../../../../core/extension/project_extension.dart';
 import '../../../../core/service/model/login_model.dart';
-import '../../global_widget/CustomElevatedButton.dart';
-import '../../global_widget/CustomTextFormFiled.dart';
+import '../../global_widget/custom_ElevatedButton.dart';
+import '../../global_widget/custom_TextFormFiled.dart';
+import '../../global_widget/custom_auteht.dart';
 import '../../global_widget/globalNavigationBar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -30,10 +33,11 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController registerPassNameController = TextEditingController();
 
-  // TextEditingController registerAdressController = TextEditingController();
+  TextEditingController registerAdressController = TextEditingController();
 
   final bool _validateUserName = false;
   final bool _validateUserPassword = false;
+  final bool _validateRegister = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,83 +48,90 @@ class _LoginPageState extends State<LoginPage> {
       ),
       child: SingleChildScrollView(
         child: StreamBuilder(builder: (context, AsyncSnapshot snapshot) {
-          return Column(
-            children: [
-              SizedBox(
-                  height: context.mediaQuery.size.height * 0.4,
-                  child: ImagePath.maskGroup2.toImage),
-              Text(
-                AppString.getString(AppStrings.loginContent),
-                style: AppStyles.getStyle(AppTextStyles.loginContentStyle),
-              ),
-              sizedBox(25.h),
-              CustomTextFormFiled(
-                prefixIcon: const Icon(Icons.person),
-                username: emailController,
-                hintText: AppString.getString(AppStrings.userHint),
-                validator: _validateUserName,
-                errorText: "errorText".tr(),
-              ),
-              sizedBox(10.h),
-              CustomTextFormFiled(
-                validator: _validateUserName,
-                errorText: "errorText".tr(),
-                prefixIcon: const Icon(Icons.key),
-                username: passwordController,
-                hintText: AppString.getString(AppStrings.passwordHint),
-                obscureText: mobxStateManagement.isVisible,
-                sufixIcon: IconButton(
-                  icon: Icon(mobxStateManagement.isVisible
-                      ? Icons.visibility_off
-                      : Icons.visibility),
-                  onPressed: () {
-                    mobxStateManagement.changeVisibleValue();
-                  },
-                ),
-              ),
-              sizedBox(35.h),
-              CustomElevatedButton(
-                text: Text(
-                  AppString.getString(AppStrings.loginButton),
-                  style: AppStyles.getStyle(AppTextStyles.loginButton),
-                ),
-                color: Colors.red,
-                sideColor: Colors.transparent,
-                onPressed: () async {
-                  if (emailController.text.isNotEmpty &&
-                      passwordController.text.isNotEmpty) {
-                    final model = UserLoginModel(
-                        email: emailController.text,
-                        password: passwordController.text);
-                    await mobxStateManagement.signInEmailAndPassword(model);
-                    if (mobxStateManagement.serviceCode == 200) {
-                      context.navigateToPage(const GlobalNavigationBar());
-                    }
-                  }
-                },
-              ),
-              sizedBox(25.h),
-              CustomElevatedButton(
-                text: RichText(
-                    text: TextSpan(
-                  children: [
-                    TextSpan(
-                        text: AppString.getString(AppStrings.registerButton1),
-                        style:
-                            AppStyles.getStyle(AppTextStyles.registerButton1)),
-                    TextSpan(
-                        text: AppString.getString(AppStrings.registerButton2),
-                        style:
-                            AppStyles.getStyle(AppTextStyles.registerButton2))
-                  ],
-                )),
-                color: Colors.white,
-                sideColor: Colors.black,
-                onPressed: () {
-                  _registerDialog(context);
-                },
-              )
-            ],
+          return Observer(
+            builder: (_) {
+              return Column(
+                children: [
+                  SizedBox(
+                      height: context.mediaQuery.size.height * 0.4,
+                      child: ImagePath.maskGroup2.toImage),
+                  Text(
+                    AppString.getString(AppStrings.loginContent),
+                    style: AppStyles.getStyle(AppTextStyles.loginContentStyle),
+                  ),
+                  sizedBox(25.h),
+                  CustomTextFormFiled(
+                    prefixIcon: const Icon(Icons.person),
+                    username: emailController,
+                    hintText: AppString.getString(AppStrings.userHint),
+                    validator: _validateUserName,
+                    errorText: "errorText".tr(),
+                  ),
+                  sizedBox(10.h),
+                  CustomTextFormFiled(
+                    validator: _validateUserName,
+                    errorText: "errorText".tr(),
+                    prefixIcon: const Icon(Icons.key),
+                    username: passwordController,
+                    hintText: AppString.getString(AppStrings.passwordHint),
+                    obscureText: mobxStateManagement.isVisible,
+                    sufixIcon: IconButton(
+                      icon: Icon(mobxStateManagement.isVisible
+                          ? Icons.visibility_off
+                          : Icons.visibility),
+                      onPressed: () {
+                        mobxStateManagement.changeVisibleValue();
+                      },
+                    ),
+                  ),
+                  sizedBox(35.h),
+                  CustomElevatedButton(
+                    text: Text(
+                      AppString.getString(AppStrings.loginButton),
+                      style: AppStyles.getStyle(AppTextStyles.loginButton),
+                    ),
+                    color: Colors.red,
+                    sideColor: Colors.transparent,
+                    onPressed: () async {
+                      if (emailController.text.isNotEmpty &&
+                          passwordController.text.isNotEmpty) {
+                        final model = UserLoginModel(
+                            email: emailController.text,
+                            password: passwordController.text);
+                        await mobxStateManagement.signInEmailAndPassword(model);
+                        if (mobxStateManagement.serviceCode == 200) {
+                          context.navigateToPage(const GlobalNavigationBar());
+                        }
+                      }
+                    },
+                  ),
+                  sizedBox(25.h),
+                  CustomElevatedButton(
+                    text: RichText(
+                        text: TextSpan(
+                      children: [
+                        TextSpan(
+                            text:
+                                AppString.getString(AppStrings.registerButton1),
+                            style: AppStyles.getStyle(
+                                AppTextStyles.registerButton1)),
+                        TextSpan(
+                            text:
+                                AppString.getString(AppStrings.registerButton2),
+                            style: AppStyles.getStyle(
+                                AppTextStyles.registerButton2))
+                      ],
+                    )),
+                    color: Colors.white,
+                    sideColor: Colors.black,
+                    onPressed: () {
+                      context.navigateToPage(const RegisterPage());
+                      // _registerDialog(context);
+                    },
+                  )
+                ],
+              );
+            },
           );
         }),
       ),
@@ -157,29 +168,34 @@ class _LoginPageState extends State<LoginPage> {
               style: AppStyles.getStyle(AppTextStyles.alertContent),
             ),
             actions: [
-              CustomTextFormFiled(
-                username: registerNameController,
-                validator: _validateUserName,
-                errorText: "Format Duzgun deyil",
-                hintText: AppString.getString(AppStrings.nameHint),
-              ),
-              sizedBox(10.h),
-              CustomTextFormFiled(
-                  username: registerPassNameController,
-                  validator: _validateUserPassword,
-                  errorText: "Format Duzgun deyil",
-                  hintText: AppString.getString(AppStrings.passwordHint)),
-              sizedBox(10.h),
               // CustomTextFormFiled(
-              //     username: registerAdressController,
-              //     hintText: AppString.getString(AppStrings.adrressHint)),
+              //   username: registerNameController,
+              //   validator: _validateUserName,
+              //   errorText: "Format Duzgun deyil",
+              //   hintText: AppString.getString(AppStrings.nameHint),
+              // ),
+              // sizedBox(10.h),
+              // CustomTextFormFiled(
+              //     username: registerPassNameController,
+              //     validator: _validateUserPassword,
+              //     errorText: "Format Duzgun deyil",
+              //     hintText: AppString.getString(AppStrings.passwordHint)),
+              // sizedBox(10.h),
               sizedBox(10.h),
               CustomElevatedButton(
                   text:
                       Text(AppString.getString(AppStrings.registerButtonText)),
                   color: Colors.red,
                   sideColor: Colors.red,
-                  onPressed: () {
+                  onPressed: () async {
+                    await FirebaseAuth.instance.verifyPhoneNumber(
+                      phoneNumber: '+44 7123 123 456',
+                      verificationCompleted:
+                          (PhoneAuthCredential credential) {},
+                      verificationFailed: (FirebaseAuthException e) {},
+                      codeSent: (String verificationId, int? resendToken) {},
+                      codeAutoRetrievalTimeout: (String verificationId) {},
+                    );
                     // setState(() {
                     //   registerNameController.text.isEmpty
                     //       ? _validateUserName = true
