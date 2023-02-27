@@ -23,7 +23,6 @@ class GeneralService implements IService {
     final response = await dio.post(signInKey, data: jsonModel);
     if (response.statusCode == 200) {
       statusCode = response.statusCode;
-      print("$statusCode login");
       return response.data;
     } else {
       return;

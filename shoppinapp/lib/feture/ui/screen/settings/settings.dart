@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppinapp/core/extension/project_extension.dart';
 import 'package:shoppinapp/feture/ui/global_widget/pop_menu.dart';
-import 'package:shoppinapp/feture/ui/screen/settings/catagory/accaunt.dart';
+import 'package:shoppinapp/feture/ui/screen/settings/catagory/user_inforamtion.dart';
 import 'package:shoppinapp/product/AppText/app_string.dart';
 
 import '../../global_widget/custom_cart.dart';
@@ -43,7 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             CustomCard(
                 onPressed: () {
-                  context.navigateToPage(const Accaunt());
+                  context.navigateToPage(const UserInforamtion());
                 },
                 leadingIcon: const Icon(Icons.person),
                 title: Text(AppString.getString(AppStrings.profile))),

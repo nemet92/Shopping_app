@@ -4,34 +4,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
-  const CustomTextFormFiled(
+  CustomTextFormFiled(
       {super.key,
-      required this.username,
+      required this.usernameController,
       required this.hintText,
-      this.sufixIcon,
+      this.suffixIcon,
       this.prefixIcon,
       this.obscureText = false,
       required bool validator,
+      this.onChanged,
       this.errorText})
       : _validator = validator;
 
-  final TextEditingController username;
+  final TextEditingController usernameController;
   final String hintText;
   final Widget? prefixIcon;
-  final Widget? sufixIcon;
+  final Widget? suffixIcon;
   final bool obscureText;
   final bool _validator;
   final String? errorText;
+  Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+      onChanged: (value) {
+        onChanged;
+      },
       obscureText: obscureText,
-      controller: username,
+      controller: usernameController,
       decoration: InputDecoration(
           errorText: _validator ? errorText : null,
           prefixIcon: prefixIcon,
-          suffixIcon: sufixIcon,
+          suffixIcon: suffixIcon,
           hintText: hintText,
           hintStyle: TextStyle(fontSize: 16.sp),
           disabledBorder: const OutlineInputBorder(

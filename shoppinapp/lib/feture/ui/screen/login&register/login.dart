@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +11,7 @@ import '../../../../core/extension/project_extension.dart';
 import '../../../../core/service/model/login_model.dart';
 import '../../global_widget/custom_ElevatedButton.dart';
 import '../../global_widget/custom_TextFormFiled.dart';
-import '../../global_widget/custom_auteht.dart';
+import '../register/register_page.dart';
 import '../../global_widget/globalNavigationBar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,15 +28,7 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController passwordController = TextEditingController();
 
-  TextEditingController registerNameController = TextEditingController();
-
-  TextEditingController registerPassNameController = TextEditingController();
-
-  TextEditingController registerAdressController = TextEditingController();
-
   final bool _validateUserName = false;
-  final bool _validateUserPassword = false;
-  final bool _validateRegister = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   sizedBox(25.h),
                   CustomTextFormFiled(
                     prefixIcon: const Icon(Icons.person),
-                    username: emailController,
+                    usernameController: emailController,
                     hintText: AppString.getString(AppStrings.userHint),
                     validator: _validateUserName,
                     errorText: "errorText".tr(),
@@ -72,10 +63,10 @@ class _LoginPageState extends State<LoginPage> {
                     validator: _validateUserName,
                     errorText: "errorText".tr(),
                     prefixIcon: const Icon(Icons.key),
-                    username: passwordController,
+                    usernameController: passwordController,
                     hintText: AppString.getString(AppStrings.passwordHint),
                     obscureText: mobxStateManagement.isVisible,
-                    sufixIcon: IconButton(
+                    suffixIcon: IconButton(
                       icon: Icon(mobxStateManagement.isVisible
                           ? Icons.visibility_off
                           : Icons.visibility),
@@ -139,87 +130,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 // RegisterAlertDialog
-  Future<dynamic> _registerDialog(BuildContext context) {
-    return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (_) {
-          return AlertDialog(
-            scrollable: true,
-            insetPadding: const EdgeInsets.symmetric(horizontal: 12),
-            title: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  AppString.getString(AppStrings.alertTitle),
-                  style: AppStyles.getStyle(AppTextStyles.alertTitle),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.cancel),
-                  onPressed: () {
-                    context.pop();
-                  },
-                ),
-              ],
-            ),
-            content: Text(
-              AppString.getString(AppStrings.alertcontent),
-              style: AppStyles.getStyle(AppTextStyles.alertContent),
-            ),
-            actions: [
-              // CustomTextFormFiled(
-              //   username: registerNameController,
-              //   validator: _validateUserName,
-              //   errorText: "Format Duzgun deyil",
-              //   hintText: AppString.getString(AppStrings.nameHint),
-              // ),
-              // sizedBox(10.h),
-              // CustomTextFormFiled(
-              //     username: registerPassNameController,
-              //     validator: _validateUserPassword,
-              //     errorText: "Format Duzgun deyil",
-              //     hintText: AppString.getString(AppStrings.passwordHint)),
-              // sizedBox(10.h),
-              sizedBox(10.h),
-              CustomElevatedButton(
-                  text:
-                      Text(AppString.getString(AppStrings.registerButtonText)),
-                  color: Colors.red,
-                  sideColor: Colors.red,
-                  onPressed: () async {
-                    await FirebaseAuth.instance.verifyPhoneNumber(
-                      phoneNumber: '+44 7123 123 456',
-                      verificationCompleted:
-                          (PhoneAuthCredential credential) {},
-                      verificationFailed: (FirebaseAuthException e) {},
-                      codeSent: (String verificationId, int? resendToken) {},
-                      codeAutoRetrievalTimeout: (String verificationId) {},
-                    );
-                    // setState(() {
-                    //   registerNameController.text.isEmpty
-                    //       ? _validateUserName = true
-                    //       : _validateUserName = false;
-                    //   registerPassNameController.text.isEmpty
-                    //       ? _validateUserPassword = true
-                    //       : _validateUserPassword = false;
-                    //   if (_validateUserName == false &&
-                    //       _validateUserPassword == false) {}
-                    // });
-
-                    if (registerNameController.text.isNotEmpty &&
-                        registerPassNameController.text.isNotEmpty) {
-                      final model = UserLoginModel(
-                          email: registerNameController.text,
-                          password: registerPassNameController.text);
-                      mobxStateManagement.signUpEmailAndPassword(model);
-                      context.navigateToPage(const GlobalNavigationBar());
-                    }
-                  })
-            ],
-          );
-        });
-  }
 
   SizedBox sizedBox(double height) {
     return SizedBox(
