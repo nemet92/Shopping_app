@@ -9,7 +9,9 @@
     "lang.en": "Ingilis dili",
 
     "bottomSheetText":"Profil resimini secin",
-    "errorText":"Format duzgun deyil"
+    "errorText":"Format duzgun deyil",
+    "errorPassword":"Sifre 6 simvol"
+
 
     
     }

@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shoppinapp/feture/ui/global_widget/custom_NavigationBar.dart';
+import 'package:shoppinapp/feture/ui/global_widget/custom_navigationBar.dart';
 import 'package:shoppinapp/firebase_options.dart';
 import 'package:shoppinapp/product/routes_pages.dart';
 import 'core/provider/auth_provider.dart';
