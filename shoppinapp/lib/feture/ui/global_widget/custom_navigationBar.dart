@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:shoppinapp/core/mobx/mobx_view_model.dart';
-import 'package:shoppinapp/feture/ui/screen/home/home_page.dart';
-import 'package:shoppinapp/feture/ui/screen/settings/settings.dart';
+import 'package:shoppinapp/feture/ui/screens/settings/settings_screen.dart';
 
-import '../screen/cart/cart.dart';
-import '../screen/search/search.dart';
+import '../screens/cart/cart_screen.dart';
+import '../screens/home/home_screen.dart';
+import '../screens/search/search_screen.dart';
 
 class GlobalNavigationBar extends StatefulWidget {
   const GlobalNavigationBar({super.key});
@@ -25,10 +25,10 @@ class _GlobalNavigationBarState extends State<GlobalNavigationBar> {
       body: IndexedStack(
         index: index,
         children: [
-          const HomePage(),
-          SearchPage(),
-          const CartPage(),
-          const SettingsPage(),
+          const HomeScreen(),
+          SearchScreen(),
+          const CartScreen(),
+          const SettingScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

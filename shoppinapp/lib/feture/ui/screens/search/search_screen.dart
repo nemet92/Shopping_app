@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:shoppinapp/core/mobx/mobx_view_model.dart';
 
-class SearchPage extends StatelessWidget {
-  SearchPage({super.key});
+class SearchScreen extends StatelessWidget {
+  SearchScreen({super.key});
   MobxStateManagement mobxStateManagement = MobxStateManagement();
 
   @override

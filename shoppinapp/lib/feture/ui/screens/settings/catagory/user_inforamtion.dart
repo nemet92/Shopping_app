@@ -6,14 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kartal/kartal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shoppinapp/feture/ui/global_widget/globalNavigationBar.dart';
+import 'package:shoppinapp/feture/ui/global_widget/custom_navigationBar.dart';
 
 import '../../../../../core/mobx/mobx_view_model.dart';
 import '../../../../../core/service/model/login_model.dart';
 import '../../../../../product/AppText/app_string.dart';
 import '../../../../../product/AppTextStyle/app_text_style.dart';
-import '../../../global_widget/custom_ElevatedButton.dart';
-import '../../../global_widget/custom_TextFormFiled.dart';
+import '../../../global_widget/custom_elevatedButton.dart';
+import '../../../global_widget/custom_textFormFiled.dart';
 
 class UserInforamtion extends StatefulWidget {
   const UserInforamtion({super.key});

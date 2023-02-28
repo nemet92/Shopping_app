@@ -9,19 +9,19 @@ import 'package:shoppinapp/product/AppText/app_string.dart';
 
 import '../../../../core/extension/project_extension.dart';
 import '../../../../core/service/model/login_model.dart';
-import '../../global_widget/custom_ElevatedButton.dart';
-import '../../global_widget/custom_TextFormFiled.dart';
-import '../register/register_page.dart';
-import '../../global_widget/globalNavigationBar.dart';
+import '../../global_widget/custom_elevatedButton.dart';
+import '../../global_widget/custom_textFormFiled.dart';
+import '../registration/register_screen.dart';
+import '../../global_widget/custom_navigationBar.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginScreenState extends State<LoginScreen> {
   MobxStateManagement mobxStateManagement = MobxStateManagement();
 
   TextEditingController emailController = TextEditingController();
@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                     sideColor: Colors.black,
                     onPressed: () {
-                      context.navigateToPage(const RegisterPage());
+                      context.navigateToPage(const RegisterScreen());
                       // _registerDialog(context);
                     },
                   )

@@ -1,22 +1,26 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kartal/kartal.dart';
 import 'package:provider/provider.dart';
 import 'package:shoppinapp/core/provider/auth_provider.dart';
 
-import '../../../../../core/extension/project_extension.dart';
+import '../../../../core/extension/project_extension.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../../../../product/AppText/app_string.dart';
-import '../../../../../product/AppTextStyle/app_text_style.dart';
-import '../../../global_widget/custom_ElevatedButton.dart';
+import '../../../../product/AppText/app_string.dart';
+import '../../../../product/AppTextStyle/app_text_style.dart';
+import '../../../../utils/utils.dart';
+import '../../global_widget/custom_elevatedButton.dart';
+import '../settings/catagory/user_inforamtion.dart';
 
 // ignore: must_be_immutable
 class OtpScreen extends StatelessWidget {
   final String verificationId;
   OtpScreen({super.key, required this.verificationId});
-  String otpCode = "";
-  String userOtp = "";
-  // bool otpCode = false;
+
+  late String otpCode = "";
+
   @override
   Widget build(BuildContext context) {
     final isLoading =
@@ -38,13 +42,11 @@ class OtpScreen extends StatelessWidget {
                 ),
                 ImagePath.maskGroup2.toImage,
                 const SizedBox(height: 20),
-                const Text(
-                  "Verification",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text("Verification".tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(fontSize: 20)),
                 const SizedBox(height: 10),
                 const Text(
                   "Enter the Otp send to your phone number",
@@ -82,20 +84,19 @@ class OtpScreen extends StatelessWidget {
                   color: Colors.red,
                   sideColor: Colors.transparent,
                   onPressed: () {
-                    final ap =
-                        Provider.of<AuthProvider>(context, listen: false);
-                    ap.verifyOtp(
-                      context: context,
-                      verificationId: verificationId,
-                      userOtp: userOtp,
-                    );
+                    // final ap =
+                    //     Provider.of<AuthProvider>(context, listen: false);
+                    // ap.verifyOtp(
+                    //   context: context,
+                    //   verificationId: verificationId,
+                    //   userOtp: userOtp,
+                    // );
 
-                    // if (otpCode != null) {
-                    //   print("OTPKodur$otpCode");
-                    //   verifyOtp(context, otpCode);
-                    // } else {
-                    //   showSnackBar(context, "Enter 6-Digit code");
-                    // }
+                    if (otpCode != "") {
+                      verifyOtp(context, otpCode);
+                    } else {
+                      showSnackBar(context, "Enter 6-Digit code");
+                    }
                   },
                 ),
                 sizedBox(16.h),
@@ -114,27 +115,27 @@ class OtpScreen extends StatelessWidget {
     );
   }
 
-  // void verifyOtp(BuildContext context, String userOtp) {
-  //   final ap = Provider.of<AuthProvider>(context, listen: false);
-  //   ap.verifyOtp(
-  //       context: context,
-  //       verificationId: verificationId,
-  //       userOtp: userOtp,
-  //       onSuccess: () {
-  //         context.navigateToPage(const UserInforamtion());
+  void verifyOtp(BuildContext context, String userOtp) {
+    final ap = Provider.of<AuthProvider>(context, listen: false);
+    ap.verifyOtp(
+        context: context,
+        verificationId: verificationId,
+        userOtp: userOtp,
+        onSuccess: () {
+          context.navigateToPage(const UserInforamtion());
 
-  //         // ap.checkExistingUser().then((value) {
-  //         //   if (value == true) {
-  //         //     //user exists in our app
-  //         //   } else {
-  //         //     Navigator.pushAndRemoveUntil(
-  //         //         context,
-  //         //         MaterialPageRoute(
-  //         //             builder: (context) => const UserInforamtion()),
-  //         //         (route) => false);
-  //         //   }
-  //         // }
-  //         // );
-  //       });
-  // }
+          //         // ap.checkExistingUser().then((value) {
+          //         //   if (value == true) {
+          //         //     //user exists in our app
+          //         //   } else {
+          //         //     Navigator.pushAndRemoveUntil(
+          //         //         context,
+          //         //         MaterialPageRoute(
+          //         //             builder: (context) => const UserInforamtion()),
+          //         //         (route) => false);
+          //         //   }
+          //         // }
+          //         // );
+        });
+  }
 }

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:shoppinapp/core/extension/project_extension.dart';
 import 'package:shoppinapp/feture/ui/global_widget/pop_menu.dart';
-import 'package:shoppinapp/feture/ui/screen/settings/catagory/user_inforamtion.dart';
+import 'package:shoppinapp/feture/ui/screens/settings/catagory/user_inforamtion.dart';
 import 'package:shoppinapp/product/AppText/app_string.dart';
 
 import '../../global_widget/custom_cart.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:kartal/kartal.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({
+class SettingScreen extends StatefulWidget {
+  const SettingScreen({
     super.key,
   });
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<SettingScreen> createState() => _SettingScreenState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingScreenState extends State<SettingScreen> {
   late Function() onPressed;
 
   Icon? trailingIcon;

@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
-import 'package:shoppinapp/feture/ui/screen/register/otp/otp_page.dart';
+import 'package:shoppinapp/feture/ui/screens/registration/otp_screen.dart';
 import 'package:shoppinapp/utils/utils.dart';
-
-import '../../feture/ui/screen/settings/catagory/user_inforamtion.dart';
 
 class AuthProvider extends ChangeNotifier {
   // bool _isSignedIn = false;
@@ -12,8 +9,9 @@ class AuthProvider extends ChangeNotifier {
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
-  String? _uid;
-  String? get uid => _uid;
+
+  // String? _uid;
+  // String? get uid => _uid;
 
   // final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
@@ -54,27 +52,25 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  void verifyOtp({
-    required BuildContext context,
-    required String verificationId,
-    required String userOtp,
-    // required Function onSuccess
-  }) async {
+  void verifyOtp(
+      {required BuildContext context,
+      required String verificationId,
+      required String userOtp,
+      required Function onSuccess}) async {
     _isLoading = true;
     notifyListeners();
 
     try {
       PhoneAuthCredential creds = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: userOtp);
-      _firebaseAuth.signInWithCredential(creds);
-      context.navigateToPage(const UserInforamtion());
-
-      // User? user = (await _firebaseAuth.signInWithCredential(creds)).user;
-      // if (user != null) {
-      //   _uid = user.uid;
-      //   onSuccess();
-      // }
-      // _isLoading = false;
+      // _firebaseAuth.signInWithCredential(creds);
+      // context.navigateToPage(const UserInforamtion());
+      User? user = (await _firebaseAuth.signInWithCredential(creds)).user;
+      if (user != null) {
+        // _uid = user.uid;
+        onSuccess();
+      }
+      _isLoading = false;
       notifyListeners();
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message.toString());

@@ -3,12 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shoppinapp/feture/ui/global_widget/globalNavigationBar.dart';
-import 'package:shoppinapp/feture/ui/screen/login&register/login.dart';
+import 'package:shoppinapp/feture/ui/global_widget/custom_NavigationBar.dart';
 import 'package:shoppinapp/firebase_options.dart';
 import 'package:shoppinapp/product/routes_pages.dart';
 import 'core/provider/auth_provider.dart';
-import 'feture/ui/screen/onboarding/onboarding.dart';
+import 'feture/ui/screens/login/login_screen.dart';
+import 'feture/ui/screens/onboarding/onboarding_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +40,10 @@ class MyApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.deviceLocale,
             theme: ThemeData(
+                textTheme: const TextTheme(
+                    labelMedium: TextStyle(),
+                    bodyMedium: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold)),
                 scaffoldBackgroundColor: const Color(0xffFFFFFF),
                 appBarTheme: const AppBarTheme(
                     backgroundColor: Colors.transparent,
@@ -51,7 +55,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             initialRoute: RoutPages.login.name,
             routes: {
-              RoutPages.login.name: (context) => const LoginPage(),
+              RoutPages.login.name: (context) => const LoginScreen(),
               RoutPages.home.name: (context) => const GlobalNavigationBar(),
               // RoutPages.register.name: (context) => const Register(),
             },

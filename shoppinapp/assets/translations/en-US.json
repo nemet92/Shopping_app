@@ -8,7 +8,12 @@
 "lang.en": "English",
 
 "bottomSheetText":"Choose Profile photo",
-"errorText":"No format "
+"errorText":"No format ",
+
+"Verification":  "Verification",
+"Register":"Register",
+"Add your phone number. We'll send you a verification code":"Add your phone number. We'll send you a verification code"
+
 
 
 

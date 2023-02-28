@@ -27,6 +27,7 @@ enum AppStrings {
   referrals,
   changeLanguage,
   helpSupport,
+  register
 }
 
 class AppString {
@@ -100,6 +101,9 @@ class AppString {
 
       case AppStrings.helpSupport:
         return "Help & Support";
+
+      case AppStrings.register:
+        return "Add your phone number. We'll send you a verification code".tr();
     }
   }
 }
