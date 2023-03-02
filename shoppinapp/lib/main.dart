@@ -1,6 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shoppinapp/feture/ui/global_widget/custom_navigationBar.dart';
@@ -16,12 +16,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await EasyLocalization.ensureInitialized();
-  runApp(EasyLocalization(
-    supportedLocales: const [Locale('en', 'US'), Locale('tr', 'TR')],
-    path: 'assets/translations', // <-- change the path of the translation files
-    fallbackLocale: const Locale('en', 'US'), child: const MyApp(),
-  ));
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -36,9 +33,15 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => AuthProvider()),
         ],
         child: MaterialApp(
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.deviceLocale,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale("en", "US"),
+              Locale("tr", "TR"),
+            ],
             theme: ThemeData(
                 textTheme: const TextTheme(
                     labelMedium: TextStyle(),
@@ -53,7 +56,7 @@ class MyApp extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 20))),
             debugShowCheckedModeBanner: false,
-            initialRoute: RoutPages.login.name,
+            initialRoute: RoutPages.home.name,
             routes: {
               RoutPages.login.name: (context) => const LoginScreen(),
               RoutPages.home.name: (context) => const GlobalNavigationBar(),

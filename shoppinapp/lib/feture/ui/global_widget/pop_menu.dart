@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PopUpMenuBarItem {
@@ -35,7 +34,7 @@ class PopMenuBar extends StatelessWidget {
               for (var i = 0; i < items.length; i++)
                 PopupMenuItem(
                   child: Row(
-                    children: [items[i].tralling, Text(items[i].title).tr()],
+                    children: [items[i].tralling, Text(items[i].title)],
                   ),
                 ),
             ]);

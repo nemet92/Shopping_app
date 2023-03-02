@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
@@ -42,7 +41,7 @@ class OtpScreen extends StatelessWidget {
                 ),
                 ImagePath.maskGroup2.toImage,
                 const SizedBox(height: 20),
-                Text("Verification".tr(),
+                Text("Verification",
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium

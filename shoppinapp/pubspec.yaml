@@ -30,17 +30,26 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+
+
   introduction_screen: ^3.1.4   
   flutter_screenutil:
   kartal:
   grock: ^0.1.4
-  easy_localization: ^3.0.0
+  # easy_localization: ^3.0.0
   
   flutter_mobx: ^2.0.6+5
   mobx_codegen: ^2.1.1
 
   provider: ^6.0.5
   dio: ^4.0.6
+  http:
+  email_auth:
     
 
 
@@ -81,6 +90,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -97,6 +107,9 @@ flutter:
   assets:
     - assets/
     - assets/translations/
+    - assets/translations/en-US.json
+    - assets/translations/tr-TR.json
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

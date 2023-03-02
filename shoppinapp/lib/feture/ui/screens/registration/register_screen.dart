@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:kartal/kartal.dart';
@@ -63,7 +62,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: SingleChildScrollView(
             child: Column(children: [
               ImagePath.maskGroup2.toImage,
-              Text("Register".tr(),
+              Text("Register",
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium

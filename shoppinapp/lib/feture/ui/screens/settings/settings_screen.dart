@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoppinapp/core/extension/project_extension.dart';
-import 'package:shoppinapp/feture/ui/global_widget/pop_menu.dart';
+import 'package:shoppinapp/feture/ui/screens/settings/catagory/classes/language.dart';
 import 'package:shoppinapp/feture/ui/screens/settings/catagory/user_inforamtion.dart';
 import 'package:shoppinapp/product/AppText/app_string.dart';
 
@@ -68,19 +67,39 @@ class _SettingScreenState extends State<SettingScreen> {
                 leadingIcon: const Icon(Icons.read_more),
                 title: Text(AppString.getString(AppStrings.referrals))),
             CustomCard(
-                trailing: PopMenuBar(
-                  onSelected: () {},
-                  items: [
-                    PopUpMenuBarItem(
-                      "lang.tr",
-                      ImagePath.turkey.toImage,
-                    ),
-                    PopUpMenuBarItem("lang.en", ImagePath.unitedState.toImage)
-                  ],
-                  baseIscon: Icons.chevron_right,
-                  iconColor: Colors.black,
-                ),
                 onPressed: () {},
+                trailing: Container(
+                  color: Colors.red,
+                  child: DropdownButton(
+                    onChanged: (language) {
+                      _changeLanguage(language!);
+                    },
+                    items: Language.languageList()
+                        .map<DropdownMenuItem<Language>>(
+                          (lang) => DropdownMenuItem(
+                            value: lang,
+                            child: Row(
+                              children: [Text(lang.flag), Text(lang.name)],
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                )
+
+                //  PopMenuBar(
+                //   onSelected: () {},
+                //   items: [
+                //     // PopUpMenuBarItem(
+                //     //   "lang.tr",
+                //     //   ImagePath.turkey.toImage,
+                //     // ),
+                //     // PopUpMenuBarItem("lang.en", ImagePath.unitedState.toImage)
+                //   ],
+                //   baseIscon: Icons.chevron_right,
+                //   iconColor: Colors.black,
+                // ),
+                ,
                 leadingIcon: const Icon(Icons.language),
                 title: Text(AppString.getString(AppStrings.changeLanguage))),
             CustomCard(
@@ -90,4 +109,8 @@ class _SettingScreenState extends State<SettingScreen> {
           ],
         ));
   }
+}
+
+void _changeLanguage(Language language) {
+  print(language.languageCode);
 }

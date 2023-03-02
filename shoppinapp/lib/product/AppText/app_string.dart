@@ -1,5 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
-
 enum AppStrings {
   onboardingText1,
   onboardingText2,
@@ -66,7 +64,6 @@ class AppString {
       // hint text
 
       case AppStrings.passwordHint:
-        return "Password".tr();
 
       case AppStrings.nameHint:
         return "Name";
@@ -79,16 +76,16 @@ class AppString {
         return "Setting";
 
       case AppStrings.profile:
-        return "profil".tr();
+        return "profil";
 
       case AppStrings.orders:
-        return "orders".tr();
+        return "orders";
 
       case AppStrings.paymentMethods:
-        return "paymentMethods".tr();
+        return "paymentMethods";
 
       case AppStrings.notifications:
-        return "notifications".tr();
+        return "notifications";
 
       case AppStrings.manageRefund:
         return "Manage Refund";
@@ -103,7 +100,7 @@ class AppString {
         return "Help & Support";
 
       case AppStrings.register:
-        return "Add your phone number. We'll send you a verification code".tr();
+        return "Add your phone number. We'll send you a verification code";
     }
   }
 }

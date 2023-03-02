@@ -1,9 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
 import 'package:shoppinapp/core/mobx/mobx_view_model.dart';
+import 'package:shoppinapp/feture/ui/screens/login/reset.dart';
 import 'package:shoppinapp/product/AppTextStyle/app_text_style.dart';
 import 'package:shoppinapp/product/AppText/app_string.dart';
 
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               sizedBox(25.h),
               CustomTextFormFiled(
                 validator: _validateUserName,
-                errorText: "errorText".tr(),
+                errorText: "errorText",
                 prefixIcon: const Icon(Icons.person),
                 usernameController: emailController,
                 hintText: AppString.getString(AppStrings.userHint),
@@ -61,8 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
               CustomTextFormFiled(
                 validator: _validatePassword,
                 errorText: (passwordController.text.isEmpty == true)
-                    ? "errorText".tr()
-                    : "errorPassword".tr(),
+                    ? "errorText"
+                    : "errorPassword",
                 // "errorText".tr(),
                 prefixIcon: const Icon(Icons.key),
                 usernameController: passwordController,
@@ -77,7 +77,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               ),
-              sizedBox(35.h),
+              sizedBox(10.h),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: TextButton(
+                    onPressed: () {
+                      context.navigateToPage(const ResetScreen());
+                    },
+                    child: const Text("Forgot password?")),
+              ),
               CustomElevatedButton(
                 text: Text(
                   AppString.getString(AppStrings.loginButton),

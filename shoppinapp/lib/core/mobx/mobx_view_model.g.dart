@@ -93,6 +93,14 @@ mixin _$MobxStateManagement on _MobxStateManagementBase, Store {
         .run(() => super.signInEmailAndPassword(model));
   }
 
+  late final _$passwordAsyncAction =
+      AsyncAction('_MobxStateManagementBase.password', context: context);
+
+  @override
+  Future<void> password(PasswordResetModel model) {
+    return _$passwordAsyncAction.run(() => super.password(model));
+  }
+
   late final _$_MobxStateManagementBaseActionController =
       ActionController(name: '_MobxStateManagementBase', context: context);
 
