@@ -10,4 +10,8 @@ class DemoLocalization {
   }
 
   Map<String, String>? _localizedValues;
+
+  Future load() async {
+    // await String jsonStringValues=rootBundle.loadString("lib/translations/${local.languageCode}.json");
+  }
 }
