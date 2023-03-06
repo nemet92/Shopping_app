@@ -1,11 +1,14 @@
 {
-"Setting":"Setting",
+"setting":"Setting",
 "profil":"Profil",
 "orders":"Orders",
 "paymentMethods":"Payment Methods",
 "notifications":"Notifications",
-"lang.tr": "Turksh",
-"lang.en": "English",
+"manageRefund":"ManageRefund",
+"referrals":  "Referrals",
+"changeLanguage":"ChangeLanguage",
+"helpSupport":"helpSupport",
+
 
 "bottomSheetText":"Choose Profile photo",
 "errorText":"No format ",

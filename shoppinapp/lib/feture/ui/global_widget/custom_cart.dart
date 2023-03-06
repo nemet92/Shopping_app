@@ -22,11 +22,10 @@ class CustomCard extends StatelessWidget {
         iconColor: Colors.red,
         onTap: onPressed,
         minLeadingWidth: 1,
-        trailing: trailing,
-        // const Icon(
-        //   Icons.chevron_right,
-        //   color: Colors.black54,
-        // ),
+        trailing: const Icon(
+          Icons.chevron_right,
+          color: Colors.black54,
+        ),
         leading: leadingIcon,
         title: title,
       ),

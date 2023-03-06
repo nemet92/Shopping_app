@@ -16,11 +16,11 @@ enum AppStrings {
   nameHint,
   adrressHint,
 
-  setting,
+  // setting,
   profile,
   orders,
   paymentMethods,
-  notifications,
+  // notifications,
   manageRefund,
   referrals,
   changeLanguage,
@@ -71,9 +71,9 @@ class AppString {
       case AppStrings.adrressHint:
         return "Addrres";
 
-      // Setting page
-      case AppStrings.setting:
-        return "Setting";
+      // // Setting page
+      // case AppStrings.setting:
+      //   return "Setting";
 
       case AppStrings.profile:
         return "profil";
@@ -84,8 +84,8 @@ class AppString {
       case AppStrings.paymentMethods:
         return "paymentMethods";
 
-      case AppStrings.notifications:
-        return "notifications";
+      // case AppStrings.notifications:
+      //   return "notifications";
 
       case AppStrings.manageRefund:
         return "Manage Refund";

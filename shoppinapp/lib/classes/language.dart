@@ -8,8 +8,8 @@ class Language {
 
   static List<Language> languageList() {
     return <Language>[
-      Language(1, "Engilish", '🇺🇸', "en"),
-      Language(2, "Turkish", '🇹🇷', "tr")
+      Language(1, '🇺🇸', "Engilish", "en"),
+      Language(2, '🇹🇷', "Turkish", "tr")
     ];
   }
 }

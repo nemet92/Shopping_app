@@ -1,11 +1,16 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:shoppinapp/feture/ui/screens/settings/catagory/classes/language.dart';
+import 'package:shoppinapp/demo_localization.dart';
 import 'package:shoppinapp/feture/ui/screens/settings/catagory/user_inforamtion.dart';
-import 'package:shoppinapp/product/AppText/app_string.dart';
+import 'package:shoppinapp/main.dart';
+import 'package:shoppinapp/utils/localization_constants.dart';
 
 import '../../global_widget/custom_cart.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:kartal/kartal.dart';
+
+import '../../../../classes/language.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({
@@ -17,26 +22,18 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  late Function() onPressed;
-
-  Icon? trailingIcon;
-
-  Icon? leadingIcon;
-
-  Text? title;
+  void _changeLanguage(Language language) async {
+    Locale temp = await setLocale(language.languageCode);
+    MyApp.setLocale(context, temp);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // bottomNavigationBar: const CustomNavigationBar2(),
         appBar: AppBar(
             automaticallyImplyLeading: false,
             elevation: 0,
-            title: Text(
-              AppString.getString(
-                AppStrings.setting,
-              ),
-            )),
+            title: Text(getTranslated(context, "setting"))),
         body: ListView(
           padding: const EdgeInsets.all(8),
           children: [
@@ -45,72 +42,115 @@ class _SettingScreenState extends State<SettingScreen> {
                   context.navigateToPage(const UserInforamtion());
                 },
                 leadingIcon: const Icon(Icons.person),
-                title: Text(AppString.getString(AppStrings.profile))),
+                title: Text(getTranslated(context, "profil"))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(FontAwesome.shopping_basket),
-                title: Text(AppString.getString(AppStrings.orders))),
+                title: Text(getTranslated(context, "orders"))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.payment),
-                title: Text(AppString.getString(AppStrings.paymentMethods))),
+                title: Text(getTranslated(context, "paymentMethods"))),
             CustomCard(
+                trailing: const Icon(
+                  Icons.arrow_right,
+                  color: Colors.black,
+                ),
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.notifications),
-                title: Text(AppString.getString(AppStrings.notifications))),
+                title: Text(DemoLocalization.of(context)
+                    .getTranslatedValue("notifications"))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.manage_accounts),
-                title: Text(AppString.getString(AppStrings.manageRefund))),
+                title: Text(getTranslated(context, "manageRefund"))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.read_more),
-                title: Text(AppString.getString(AppStrings.referrals))),
-            CustomCard(
-                onPressed: () {},
-                trailing: Container(
+                title: Text(getTranslated(context, "referrals"))),
+            Card(
+              child: ListTile(
+                minLeadingWidth: 1,
+                style: ListTileStyle.drawer,
+                leading: const Icon(
+                  Icons.language,
                   color: Colors.red,
-                  child: DropdownButton(
-                    onChanged: (language) {
-                      _changeLanguage(language!);
-                    },
-                    items: Language.languageList()
-                        .map<DropdownMenuItem<Language>>(
-                          (lang) => DropdownMenuItem(
-                            value: lang,
-                            child: Row(
-                              children: [Text(lang.flag), Text(lang.name)],
-                            ),
+                ),
+                title:
+                    Text(getTranslated(context, "changeLanguage").toString()),
+                trailing: DropdownButton(
+                  icon: const Visibility(
+                      visible: true,
+                      child: Icon(
+                        Icons.chevron_right,
+                        color: Colors.black,
+                        // size: 24,
+                      )),
+                  onChanged: (language) {
+                    _changeLanguage(language!);
+                  },
+                  items: Language.languageList()
+                      .map<DropdownMenuItem<Language>>(
+                        (lang) => DropdownMenuItem(
+                          value: lang,
+                          child: Row(
+                            children: [Text(lang.flag), Text(lang.name)],
                           ),
-                        )
-                        .toList(),
-                  ),
-                )
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
+            )
 
-                //  PopMenuBar(
-                //   onSelected: () {},
-                //   items: [
-                //     // PopUpMenuBarItem(
-                //     //   "lang.tr",
-                //     //   ImagePath.turkey.toImage,
-                //     // ),
-                //     // PopUpMenuBarItem("lang.en", ImagePath.unitedState.toImage)
-                //   ],
-                //   baseIscon: Icons.chevron_right,
-                //   iconColor: Colors.black,
-                // ),
-                ,
-                leadingIcon: const Icon(Icons.language),
-                title: Text(AppString.getString(AppStrings.changeLanguage))),
+            // CustomCard(
+            //     onPressed: () {},
+            //     trailing: DropdownButton(
+            //       borderRadius: const BorderRadius.all(Radius.circular(0)),
+            //       elevation: 0,
+            //       icon: const Visibility(
+            //           visible: true,
+            //           child: Icon(
+            //             Icons.arrow_right,
+            //             color: Colors.black,
+            //             size: 24,
+            //           )),
+            //       onChanged: (language) {
+            //         _changeLanguage(language!);
+            //       },
+            //       items: Language.languageList()
+            //           .map<DropdownMenuItem<Language>>(
+            //             (lang) => DropdownMenuItem(
+            //               value: lang,
+            //               child: Row(
+            //                 children: [Text(lang.flag), Text(lang.name)],
+            //               ),
+            //             ),
+            //           )
+            //           .toList(),
+            //     ),
+
+            //     //     //     PopMenuBar(
+            //     //     //   onSelected: () {},
+            //     //     //   items: [
+            //     //     //     PopUpMenuBarItem(
+            //     //     //       "lang.tr",
+            //     //     //       ImagePath.turkey.toImage,
+            //     //     //     ),
+            //     //     //     PopUpMenuBarItem("lang.en", ImagePath.unitedState.toImage)
+            //     //     //   ],
+            //     //     //   baseIscon: Icons.chevron_right,
+            //     //     //   iconColor: Colors.black,
+            //     //     // ),
+            //     leadingIcon: const Icon(Icons.language),
+            //     title: Text(AppString.getString(AppStrings.changeLanguage))),
+
+            ,
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.help_outline),
-                title: Text(AppString.getString(AppStrings.helpSupport))),
+                title: Text(getTranslated(context, "helpSupport"))),
           ],
         ));
   }
-}
-
-void _changeLanguage(Language language) {
-  print(language.languageCode);
 }
