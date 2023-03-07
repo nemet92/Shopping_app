@@ -108,8 +108,8 @@ flutter:
   assets:
     - assets/
     # - assets/translations/
-    - lib/classes/en.json
-    - lib/classes/tr.json
+    - assets/i18n/en.json
+    - assets/i18n/tr.json
 
   #   - images/a_dot_ham.jpeg
 

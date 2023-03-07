@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shoppinapp/demo_localization.dart';
+import 'package:shoppinapp/classes/language/demo_localization.dart';
 
 //language code
 const String ENGLSIH = "en";
@@ -32,9 +32,8 @@ Locale _locale(String languageCode) {
     default:
       return const Locale(ENGLSIH, "US");
   }
-  // return temp = Locale(languageCode, "TR");
 }
 
 String getTranslated(BuildContext context, String key) {
-  return DemoLocalization.of(context).getTranslatedValue(key);
+  return DemoLocalization.of(context)!.getTranslatedValue(key);
 }

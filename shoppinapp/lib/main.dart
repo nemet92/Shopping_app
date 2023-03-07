@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shoppinapp/demo_localization.dart';
+import 'package:shoppinapp/classes/language/demo_localization.dart';
 import 'package:shoppinapp/feture/ui/global_widget/custom_navigationBar.dart';
 import 'package:shoppinapp/firebase_options.dart';
 import 'package:shoppinapp/product/routes_pages.dart';
-import 'package:shoppinapp/utils/localization_constants.dart';
+import 'package:shoppinapp/classes/language/localization_constants.dart';
 import 'core/provider/auth_provider.dart';
 import 'feture/ui/screens/login/login_screen.dart';
 import 'feture/ui/screens/onboarding/onboarding_screen.dart';
@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                           fontWeight: FontWeight.bold,
                           fontSize: 20))),
               debugShowCheckedModeBanner: false,
-              initialRoute: RoutPages.home.name,
+              initialRoute: RoutPages.onboarding.name,
               routes: {
                 RoutPages.login.name: (context) => const LoginScreen(),
                 RoutPages.home.name: (context) => const GlobalNavigationBar(),

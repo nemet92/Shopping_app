@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:shoppinapp/classes/language/localization_constants.dart';
 import 'package:shoppinapp/core/mobx/mobx_view_model.dart';
 import 'package:shoppinapp/feture/ui/screens/settings/settings_screen.dart';
 
@@ -43,25 +44,24 @@ class _GlobalNavigationBarState extends State<GlobalNavigationBar> {
             index = newindex;
           });
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.home,
-              color: Colors.red,
             ),
-            label: "Home",
+            label: getTranslated(context, "home"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Search",
+            icon: const Icon(Icons.search),
+            label: getTranslated(context, "search"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(FontAwesome.cart_plus),
-            label: "Cart",
+            icon: const Icon(FontAwesome.cart_plus),
+            label: getTranslated(context, "cart"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Setting",
+            icon: const Icon(Icons.settings),
+            label: getTranslated(context, "setting"),
           ),
         ],
       ),

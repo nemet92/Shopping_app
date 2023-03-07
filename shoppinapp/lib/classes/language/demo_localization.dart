@@ -8,15 +8,14 @@ class DemoLocalization {
 
   final Locale locale;
 
-  static DemoLocalization of(BuildContext context) {
-    return Localizations.of<DemoLocalization>(context, DemoLocalization)!;
-  }
+  static DemoLocalization? of(BuildContext context) =>
+      Localizations.of<DemoLocalization>(context, DemoLocalization);
 
   Map<String, String>? _localizedValues;
 
   Future<void> load() async {
     String jsonStringValues =
-        await rootBundle.loadString("lib/classes/${locale.languageCode}.json");
+        await rootBundle.loadString("assets/i18n/${locale.languageCode}.json");
     Map<String, dynamic> mappedJson = json.decode(jsonStringValues);
     _localizedValues =
         mappedJson.map((key, value) => MapEntry(key, value.toString()));

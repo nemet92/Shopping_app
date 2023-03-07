@@ -1,0 +1,42 @@
+{
+"onboardingText1":"Grocery shopping can be done in, a variety of ways. Many grocery stores offer online ordering and delivery services, allowing customers to shop from the comfort of their own home.",
+"onboardingText2":"Fast delivery is possible depending on the item and  the shipping method chosen. Many online retailers offer expedited shipping options such as overnight or two-day delivery for an additional fee.",
+"loginContent":"Get groceries delivered at your doordstep in just 15 minutes.",
+"userHint":"Mobile number and mail",
+"password":"Password",
+"forgotPassword":"Forgot password?",
+
+"loginButton":"Login",
+"registerButton1":"I am new here.",
+"registerButton2":"Create an account",
+
+
+
+"setting":"Setting",
+"profil":"Profil",
+"orders":"Orders",
+"paymentMethods":"Payment Methods",
+"notifications":"Notifications",
+"manageRefund":"ManageRefund",
+"referrals":  "Referrals",
+"changeLanguage":"ChangeLanguage",
+"helpSupport":"helpSupport",
+
+
+"bottomSheetText":"Choose Profile photo",
+"errorText":"No format ",
+"errorPassword":"Code 6 simvol",
+
+"Verification":  "Verification",
+"Register":"Register",
+"Add your phone number. We'll send you a verification code":"Add your phone number. We'll send you a verification code",
+
+"home":"Home",
+"search":"Search",
+"cart":"Cart"
+
+
+
+
+
+}

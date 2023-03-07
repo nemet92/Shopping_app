@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 import 'package:kartal/kartal.dart';
-import 'package:shoppinapp/product/AppText/app_string.dart';
+import 'package:shoppinapp/classes/language/localization_constants.dart';
 
 import '../../../../core/extension/project_extension.dart';
 import '../../../../product/routes_pages.dart';
@@ -27,12 +27,12 @@ class OnboradingPage extends StatelessWidget {
           PageViewModel(
             image: ImagePath.grocery.toImage,
             title: "Grocery Shopping",
-            body: AppString.getString(AppStrings.onboardingText1),
+            body: getTranslated(context, "onboardingText1"),
           ),
           PageViewModel(
             image: ImagePath.delivery.toImage,
             title: "Delivery",
-            body: AppString.getString(AppStrings.onboardingText2),
+            body: getTranslated(context, "onboardingText2"),
           ),
         ],
         done: const Text("Next"),

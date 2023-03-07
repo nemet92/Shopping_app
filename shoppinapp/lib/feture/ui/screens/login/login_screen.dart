@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kartal/kartal.dart';
+import 'package:shoppinapp/classes/language/localization_constants.dart';
 import 'package:shoppinapp/core/mobx/mobx_view_model.dart';
 import 'package:shoppinapp/feture/ui/screens/login/reset.dart';
 import 'package:shoppinapp/product/AppTextStyle/app_text_style.dart';
-import 'package:shoppinapp/product/AppText/app_string.dart';
 
 import '../../../../core/extension/project_extension.dart';
 import '../../../../core/service/model/login_model.dart';
@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: context.mediaQuery.size.height * 0.4,
                   child: ImagePath.maskGroup2.toImage),
               Text(
-                AppString.getString(AppStrings.loginContent),
+                getTranslated(context, "loginContent"),
                 style: AppStyles.getStyle(AppTextStyles.loginContentStyle),
               ),
               sizedBox(25.h),
@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 errorText: "errorText",
                 prefixIcon: const Icon(Icons.person),
                 usernameController: emailController,
-                hintText: AppString.getString(AppStrings.userHint),
+                hintText: getTranslated(context, "userHint"),
               ),
               sizedBox(10.h),
               CustomTextFormFiled(
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // "errorText".tr(),
                 prefixIcon: const Icon(Icons.key),
                 usernameController: passwordController,
-                hintText: AppString.getString(AppStrings.passwordHint),
+                hintText: getTranslated(context, "passwordHint"),
                 obscureText: mobxStateManagement.isVisible,
                 suffixIcon: IconButton(
                   icon: Icon(mobxStateManagement.isVisible
@@ -84,11 +84,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       context.navigateToPage(const ResetScreen());
                     },
-                    child: const Text("Forgot password?")),
+                    child: Text(getTranslated(context, "forgotPassword"))),
               ),
               CustomElevatedButton(
                 text: Text(
-                  AppString.getString(AppStrings.loginButton),
+                  getTranslated(context, "loginButton"),
                   style: AppStyles.getStyle(AppTextStyles.loginButton),
                 ),
                 color: Colors.red,
@@ -121,11 +121,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: TextSpan(
                   children: [
                     TextSpan(
-                        text: AppString.getString(AppStrings.registerButton1),
+                        text: getTranslated(context, "registerButton1"),
                         style:
                             AppStyles.getStyle(AppTextStyles.registerButton1)),
                     TextSpan(
-                        text: AppString.getString(AppStrings.registerButton2),
+                        text: getTranslated(context, "registerButton2"),
                         style:
                             AppStyles.getStyle(AppTextStyles.registerButton2))
                   ],

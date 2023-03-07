@@ -1,10 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:shoppinapp/demo_localization.dart';
 import 'package:shoppinapp/feture/ui/screens/settings/catagory/user_inforamtion.dart';
 import 'package:shoppinapp/main.dart';
-import 'package:shoppinapp/utils/localization_constants.dart';
+import 'package:shoppinapp/classes/language/localization_constants.dart';
 
 import '../../global_widget/custom_cart.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
@@ -58,8 +57,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.notifications),
-                title: Text(DemoLocalization.of(context)
-                    .getTranslatedValue("notifications"))),
+                title: Text(getTranslated(context, "notifications"))),
             CustomCard(
                 onPressed: () {},
                 leadingIcon: const Icon(Icons.manage_accounts),
@@ -76,8 +74,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   Icons.language,
                   color: Colors.red,
                 ),
-                title:
-                    Text(getTranslated(context, "changeLanguage").toString()),
+                title: Text(getTranslated(context, "changeLanguage")),
                 trailing: DropdownButton(
                   icon: const Visibility(
                       visible: true,

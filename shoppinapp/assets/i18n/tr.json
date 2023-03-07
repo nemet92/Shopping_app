@@ -1,0 +1,41 @@
+
+{
+
+    
+"onboardingText1":"Bakkal alışverişi, çeşitli yollarla yapılabilir. Birçok bakkal, çevrimiçi sipariş ve teslimat hizmetleri sunar ve müşterilerin kendi evlerinin konforundan alışveriş yapmalarına izin verir.",
+"onboardingText2":"Öğeye ve seçilen nakliye yöntemine bağlı olarak hızlı teslimat mümkündür. Birçok çevrimiçi perakendeci, bir gece veya iki günlük teslimat gibi hızlandırılmış nakliye seçenekleri sunar.",
+"loginContent":"Doordstep'inize sadece 15 dakika içinde teslim alın.",
+"userHint":"Cep telefonu numarası ve posta",
+"passwordHint":"Şifrə",
+"forgotPassword":"Şifrə unutdunuz?",
+"loginButton":"Giriş yapmak",
+"registerButton1":"Ben burada yeniyim.",
+"registerButton2":"Bir hesap oluşturun",
+
+
+
+
+"setting":"Ayar",
+"profil":"Profil",
+"orders":"Emirler",
+"paymentMethods":"Ödeme metodları",
+"notifications":"Bildirimler",
+"manageRefund":"Managerefund",
+"referrals":  "Tavsiyeler",
+"changeLanguage":"Dili değiştir",
+"helpSupport":"Yardım desteği",
+    
+    
+"bottomSheetText":"Profil fotoğrafını seçin",
+"errorText":"Format yok",
+"errorPassword":"Kod 6 Simvol",
+"Verification":  "Doğrulama",
+"Register":"Kayıt olmak",
+"Add your phone number. We'll send you a verification code":"Telefon numaranızı ekleyin. Size bir doğrulama kodu göndereceğiz",
+    
+"home":"Ev",
+"search":"Aramak",
+"cart":"Kart"    
+    
+    
+    }
