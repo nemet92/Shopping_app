@@ -5,11 +5,23 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-      color: Colors.red,
-      height: 100,
-      width: 100,
-    ));
+    return SafeArea(
+      child: Scaffold(
+          body: Column(
+        children: [
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  child: Container(),
+                );
+              },
+            ),
+          ),
+        ],
+      )),
+    );
   }
 }

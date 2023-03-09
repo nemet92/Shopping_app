@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                           fontWeight: FontWeight.bold,
                           fontSize: 20))),
               debugShowCheckedModeBanner: false,
-              initialRoute: RoutPages.onboarding.name,
+              initialRoute: RoutPages.home.name,
               routes: {
                 RoutPages.login.name: (context) => const LoginScreen(),
                 RoutPages.home.name: (context) => const GlobalNavigationBar(),
